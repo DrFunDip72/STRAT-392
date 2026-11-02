@@ -1,0 +1,1025 @@
+<title>STRAT 392 Midterm Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: sticky section nav on top, single reading column (max 46rem), tables and quiz cards inside it. Blue = structure, amber = exam trap, green = her take. */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --fg:#162231; --muted:#566678; --line:#d9e0e8;
+  --accent:#1d4f91; --accent-soft:#e4edf8; --accent-fg:#ffffff;
+  --trap:#8a4b00; --trap-bg:#fff3df; --trap-line:#f0cf9a;
+  --take:#17623f; --take-bg:#e6f4ec; --take-line:#b4dcc4;
+  --bad:#a3262a; --bad-bg:#fbe9ea; --good:#17623f; --good-bg:#e6f4ec;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1823; --surface:#16222f; --fg:#e6edf5; --muted:#9fb0c3; --line:#2a3a4c;
+  --accent:#7fb1ee; --accent-soft:#1b2c42; --accent-fg:#0f1823;
+  --trap:#f2c27a; --trap-bg:#2c2113; --trap-line:#5a4220;
+  --take:#8fd6af; --take-bg:#122a1f; --take-line:#245a3f;
+  --bad:#f09a9d; --bad-bg:#32181a; --good:#8fd6af; --good-bg:#122a1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1823; --surface:#16222f; --fg:#e6edf5; --muted:#9fb0c3; --line:#2a3a4c;
+  --accent:#7fb1ee; --accent-soft:#1b2c42; --accent-fg:#0f1823;
+  --trap:#f2c27a; --trap-bg:#2c2113; --trap-line:#5a4220;
+  --take:#8fd6af; --take-bg:#122a1f; --take-line:#245a3f;
+  --bad:#f09a9d; --bad-bg:#32181a; --good:#8fd6af; --good-bg:#122a1f; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{background:var(--bg);color:var(--fg);font:400 1rem/1.6 var(--sans);margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.wrap{max-width:46rem;margin:0 auto;padding-block:0 4rem}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:700;margin-top:3.2rem;padding-top:1.4rem;border-top:2px solid var(--fg)}
+h3{font-size:1.2rem;font-weight:600;margin:1.8rem 0 .5rem}
+h4{font:600 .78rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:1.6rem 0 .4rem}
+p{margin:.55rem 0}
+ul,ol{margin:.4rem 0;padding-left:1.25rem} li{margin:.25rem 0}
+a{color:var(--accent)}
+strong{font-weight:650}
+code,.mono{font-family:var(--mono);font-size:.88em}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.top .row{max-width:46rem;margin:0 auto;display:flex;gap:.25rem;overflow-x:auto;padding-block:.5rem;scrollbar-width:thin}
+nav.top a{flex:none;text-decoration:none;color:var(--muted);font:500 .82rem/1 var(--sans);padding:.55rem .7rem;border-radius:6px;white-space:nowrap}
+nav.top a:hover,nav.top a.on{color:var(--accent-fg);background:var(--accent)}
+nav.top a:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header */
+header.hero{padding-top:2.2rem}
+.eyebrow{font:500 .78rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.7rem}
+.lede{font-size:1.1rem;color:var(--muted);max-width:38rem;margin-top:.8rem}
+
+/* facts grid */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:1.4rem 0}
+.facts div{background:var(--surface);padding:.8rem .9rem;min-width:0}
+.facts b{display:block;font:600 1.6rem/1.1 var(--serif);font-variant-numeric:tabular-nums}
+.facts span{font-size:.8rem;color:var(--muted)}
+
+/* callouts */
+.box{margin:1rem 0;padding:.75rem .95rem;border:1px solid var(--line);background:var(--surface)}
+.box>b:first-child,.box>.lbl{display:block;font:600 .72rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem}
+.box p:first-of-type{margin-top:0}.box p:last-child,.box ul:last-child{margin-bottom:0}
+.trap{background:var(--trap-bg);border-color:var(--trap-line)} .trap .lbl{color:var(--trap)}
+.take{background:var(--take-bg);border-color:var(--take-line)} .take .lbl{color:var(--take)}
+.def{background:var(--accent-soft);border-color:transparent} .def .lbl{color:var(--accent)}
+
+/* tables */
+.tw{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.92rem}
+th,td{padding:.55rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font:600 .74rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+
+/* collapsibles */
+details{border:1px solid var(--line);background:var(--surface);margin:.6rem 0}
+summary{cursor:pointer;padding:.65rem .9rem;font-weight:600;list-style:none;display:flex;gap:.6rem;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font:500 1rem var(--mono);color:var(--accent);width:1rem;flex:none}
+details[open]>summary::before{content:"\2212"}
+details>.in{padding:0 .95rem .8rem}
+
+/* quiz */
+.ctrl{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:1rem 0}
+.chip{font:500 .8rem/1 var(--sans);padding:.5rem .75rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn{font:600 .9rem/1 var(--sans);padding:.7rem 1rem;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);cursor:pointer;border-radius:6px}
+.btn.alt{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:default}
+.score{font:500 .85rem var(--mono);color:var(--muted);margin-left:auto}
+.q{border:1px solid var(--line);background:var(--surface);padding:.9rem 1rem;margin:.8rem 0}
+.q .meta{display:flex;gap:.5rem;flex-wrap:wrap;font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.5rem}
+.q .meta .tag{padding:.25rem .45rem;border:1px solid var(--line)}
+.q .meta .miss{color:var(--bad);border-color:var(--bad)}
+.q .qt{font-weight:600;margin:.2rem 0 .6rem}
+.opt{display:flex;gap:.6rem;width:100%;text-align:left;padding:.6rem .7rem;margin:.3rem 0;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{font:600 .85rem var(--mono);color:var(--muted);flex:none;width:1.2rem}
+.opt.right{background:var(--good-bg);border-color:var(--good)} .opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.why{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--line);font-size:.93rem}
+.ans{background:var(--take-bg);border:1px solid var(--take-line);padding:.6rem .8rem;margin:.5rem 0}
+.ans .lbl{display:block;font:600 .7rem var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--take);margin-bottom:.25rem}
+.ans.alt{background:var(--accent-soft);border-color:transparent}.ans.alt .lbl{color:var(--accent)}
+textarea{width:100%;min-height:5rem;font:inherit;padding:.6rem;border:1px solid var(--line);background:var(--bg);color:var(--fg);resize:vertical}
+
+/* flashcards */
+.card{min-height:13rem;border:1px solid var(--line);background:var(--surface);padding:1.4rem 1.2rem;display:flex;flex-direction:column;justify-content:center;cursor:pointer;margin:.8rem 0;text-align:left;width:100%;font:inherit;color:var(--fg)}
+.card .side{font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.6rem}
+.card .txt{font:600 1.35rem/1.35 var(--serif)} .card.back .txt{font:400 1.05rem/1.55 var(--sans)}
+
+.small{font-size:.85rem;color:var(--muted)}
+footer{margin-top:3rem;color:var(--muted);font-size:.85rem}
+@media (max-width:520px){h2{font-size:1.4rem}.score{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<nav class="top" aria-label="Sections"><div class="row">
+  <a href="#start">Start here</a><a href="#c1">Strategy</a><a href="#c2">Problem solving</a><a href="#c3">External</a><a href="#c4">Internal</a><a href="#c5">Generic</a><a href="#c6">Innovation</a><a href="#c7">Growth</a><a href="#c8">Non-market</a><a href="#traps">Traps</a><a href="#cases">Cases</a><a href="#apply">Application Q</a><a href="#practice">Practice</a><a href="#cards">Flashcards</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="hero" id="start">
+  <div class="eyebrow">STRAT 392 · Dr. Lizunova · Midterm, Nov 2–4</div>
+  <h1>Midterm study guide</h1>
+  <p class="lede">Built from her official study guide, the midterm review PDF, every lecture deck, the three cases, your Canvas quizzes, and all eight class transcripts. Where she explained something in class, her version is in the green boxes.</p>
+
+  <div class="facts" role="list">
+    <div role="listitem"><b class="num">25</b><span>multiple choice</span></div>
+    <div role="listitem"><b class="num">20</b><span>true / false</span></div>
+    <div role="listitem"><b class="num">10 of 11</b><span>short answer, 2–4 sentences each</span></div>
+    <div role="listitem"><b class="num">1</b><span>application question = 5 mini short answers on one scenario</span></div>
+    <div role="listitem"><b class="num">~90 min</b><span>average time. Closed book, no note card</span></div>
+    <div role="listitem"><b class="num">300 pts</b><span>30% of your grade, the only test in the class</span></div>
+  </div>
+
+  <h3>What she told the class about the test</h3>
+  <ul>
+    <li><b>It rewards understanding, not memorizing.</b> "Don't memorize long lists (such as 14 directions for innovation). I'll never ask you to list more than a couple of examples." (midterm review PDF)</li>
+    <li><b>No "define X" questions.</b> Short answers ask you to apply strategic thinking to a situation. On most of them several different answers get full points if your argument is valid. A couple have one right answer. (10/28, 0:22)</li>
+    <li><b>Multiple choice just needs recognition.</b> No C4 or HHI calculations, but know they are two measures of concentration. (9/16 and 10/28)</li>
+    <li><b>Short answers are worth about 4 points each</b> (she said "we'll give you four points" about the problem-solving one). Spaces are small on purpose: two to four sentences.</li>
+    <li><b>You answer 10 of the 11 short answers. If you answer all 11, the last one is dropped</b>, so choose which one to skip yourself. (10/28, 0:21)</li>
+    <li><b>Several questions are about companies from class</b> (Harley-Davidson, Costco, Coke, Maui Nui). You need the concept each case illustrates, not case details.</li>
+    <li><b>The class average is usually 82 or 83</b>, helped by a couple of bonus questions.</li>
+    <li><b>Not on the test:</b> the simulation (Capsim), SWOT analysis ("you don't need to know anything on this slide," 9/16), and calculations.</li>
+    <li><b>If you blank on a five-forces question, "just put switching costs, and I think you will be right half of the time."</b> (9/16, 0:44)</li>
+  </ul>
+
+  <div class="box trap"><span class="lbl">Logistics</span>
+    <p>Take it any time Mon–Wed at the Testing Center. The Testing Center starts charging a late fee <b>Wednesday at 2:00 pm</b>. The student-led review (TA Andrew) is <b>Monday 2:00 pm on Zoom</b>, not recorded, link on Canvas under Course Information. Bring questions: the "Questions to ask at the review" box near the end lists the topics the class materials left thin.</p>
+  </div>
+
+  <h3>Suggested plan</h3>
+  <ol>
+    <li><b>Tonight:</b> read sections 1–8 once, top to bottom, only the boxes labelled "Exam trap" and "Her take" if you are short on time. Then read <a href="#traps">Traps</a>.</li>
+    <li><b>Monday:</b> attend the 2 pm review. Do all 10 of her practice questions, then every question you missed on your own Canvas quizzes (filter "You missed this" in <a href="#practice">Practice</a>).</li>
+    <li><b>Tuesday:</b> flashcards, then write out the sample <a href="#apply">application question</a> answers from memory before reading the models. Take the exam Tuesday or early Wednesday.</li>
+  </ol>
+</header>
+
+<!-- ======================= 1 ======================= -->
+<h2 id="c1">1. What is strategy</h2>
+
+<div class="box def"><span class="lbl">Definition (use this wording)</span>
+  <p><b>Strategy</b> is a theory and a set of choices that helps a company generate and <b>sustain</b> a competitive advantage.</p></div>
+
+<h3>The four strategic choices (she flagged this slide "important")</h3>
+<div class="tw"><table>
+<tr><th>#</th><th>Choice</th><th>Question it answers</th></tr>
+<tr><td>1</td><td>Where to compete</td><td>Which markets (industries or geographic markets) for a high return on invested capital? Who do we serve?</td></tr>
+<tr><td>2</td><td>Unique value</td><td>What unique value do we offer customers in those markets? (Why we win with customers)</td></tr>
+<tr><td>3</td><td>Resources and capabilities</td><td>What assets, brands, processes will let us deliver that value better than rivals?</td></tr>
+<tr><td>4</td><td>Sustain the value</td><td>What are the barriers to imitation? How do we stop competitors from copying us?</td></tr>
+</table></div>
+<p>The whole course is organized around these four. External analysis answers #1. Generic strategies and innovation answer #2. Internal analysis answers #3 and #4. Corporate strategy and global strategy return to #1.</p>
+
+<div class="box take"><span class="lbl">Her take (9/2)</span>
+  <p>Resources are the <b>ingredients</b>; capabilities are the <b>recipe</b> (how you combine them). Two students had the same candy and got different results because of negotiation, social capital and information. She added: strategy is about <b>gaining and sustaining</b>, and "it's not enough to create. You also want to be able to capture."</p></div>
+
+<h3>Three principles (taught with scenarios on 9/2)</h3>
+<ul>
+  <li><b>Context-dependent, with trade-offs.</b> Saying yes to something means saying no to something else. Not advertising can be fine (IKEA barely does) or bad, depending on context.</li>
+  <li><b>Choices must fit together (alignment).</b> Luxury brands (Birkin bag, Coach) discount badly if their value comes from scarcity. Discounting is fine when it fits the rest of the strategy.</li>
+  <li><b>Gain and sustain, and think about competitors.</b> Delta and American Express offered triple miles. Rivals copied it, it became a race to the bottom, and the whole industry got less profitable.</li>
+</ul>
+
+<h3>Mission, objectives, strategy, organization</h3>
+<p>Mission = fundamental purpose and values. Objectives = specific targets. <b>Strategy = the choices that achieve them (the focus of this course).</b> Organization = structure, systems, staff that implement it. Amazon: mission "number one customer-centered company"; strategy "huge selection, one-stop shop"; organization "local fulfillment centers".</p>
+
+<h3>What drives firm performance (variance decomposition)</h3>
+<p>Study of business-unit return on assets (Roquebert et al., 1996). This slide is repeated as a divider through the semester and she called it a "most important" slide.</p>
+<div class="tw"><table>
+<tr><th>Source of profit differences</th><th>Share</th><th>In this course</th></tr>
+<tr><td>Macroeconomic and industry effects</td><td class="num">45%</td><td>Five forces, PESTEL, and non-market strategy</td></tr>
+<tr><td>Business-unit effects</td><td class="num">37%</td><td>Resources and capabilities (VRIO), cost leadership vs differentiation, business model</td></tr>
+<tr><td>Corporate effects</td><td class="num">18%</td><td>Firm scope and firm boundaries (diversification, integration, make/buy/ally), geographic expansion</td></tr>
+</table></div>
+
+<!-- ======================= 2 ======================= -->
+<h2 id="c2">2. Problem solving</h2>
+<p>Study guide items: <b>4S framework, TOSCA, issue-driven vs hypothesis-driven problem solving, design thinking.</b></p>
+
+<h3>Why bother: four pitfalls (one per step)</h3>
+<div class="tw"><table>
+<tr><th>Pitfall</th><th>Example</th><th>Lesson</th></tr>
+<tr><td>Poor problem definition (State)</td><td>Record labels asked "how do we stop illegal sharing to protect CD sales?" Apple asked "how can we make money in a world where distribution is changing?" and built iTunes.</td><td>Reframing the question changes the solution space. "A problem well-stated is half-solved."</td></tr>
+<tr><td>Narrow framing / wrong mental model (Structure)</td><td>JCPenney's new CEO from Apple Retail cut coupons and discounts. Customers hated it and he was fired.</td><td>He transferred a mental model from a different company.</td></tr>
+<tr><td>Solution confirmation (Solve)</td><td>Grameen–Danone yogurt for malnourished children in Bangladesh failed (lactose intolerance, refrigeration, dairy was a monthly treat).</td><td>Don't just run with the solution you already believe. Test and challenge it.</td></tr>
+<tr><td>Miscommunication (Sell)</td><td>Fat vs sugar: the intuitive "fat makes you fat" beat the British scientist's complex sugar story.</td><td>Communicating effectively matters as much as being right.</td></tr>
+</table></div>
+<p>Two general traps: <b>analysis paralysis</b> and <b>jumping to solutions</b>. She noted experts fall into them <i>more</i>, because they assume they know what worked in the past.</p>
+
+<h3>4S method</h3>
+<ol><li><b>State</b> the problem</li><li><b>Structure</b> the problem</li><li><b>Solve</b> the problem</li><li><b>Sell</b> the solution</li></ol>
+
+<h3>State it with TOSCA</h3>
+<p>Memory device: the opera <i>Tosca</i>. Mario is jailed; Tosca wants him out but won't do the things Scarpia (the police chief who decides Mario's fate) demands.</p>
+<div class="tw"><table>
+<tr><th>Letter</th><th>Step</th><th>What to write</th><th>Tosca</th></tr>
+<tr><td>T</td><td>Trouble</td><td>The symptoms: facts, not questions. A <b>gap between reality and aspiration</b>, as specific as possible.</td><td>Mario is in jail</td></tr>
+<tr><td>O</td><td>Owner</td><td>Whose problem is it? <b>One</b> owner (can be a collective). The owner choice shapes everything else. Be precise: "top management," not "the company."</td><td>Tosca</td></tr>
+<tr><td>S</td><td>Success criteria</td><td>Metrics, amount, timing, who judges.</td><td>Mario out, alive, tomorrow</td></tr>
+<tr><td>C</td><td>Constraints</td><td>Prior commitments, resource limits, time limits.</td><td>Her morals</td></tr>
+<tr><td>A</td><td>Actors</td><td>Who else has a say? The ones that matter can block your solution.</td><td>Scarpia</td></tr>
+</table></div>
+<p>Combine them into one <b>core question</b>. Example: "In a context where consumers increasingly download pirated music, what can our company do to restore X% revenue growth with a minimum return on sales of Y% in three years?" Specific wording narrows the solution space (rules out suing teenagers).</p>
+<div class="box take"><span class="lbl">Her take (9/8, 9/16)</span><p>Her parking example: vague "improve parking at BYU" became "How can BYU Parking Services raise student satisfaction with campus parking from 60% to 75% over three years without building more structures or raising its budget?" Takeaway: problems should be stated specifically and ideally hit all five topics. Put the result as a <b>question</b>, because a question tells your brain "problem solving." (The transcript sometimes writes TOSCA as "TSCA"; same framework.)</p></div>
+
+<h3>Structure it: three approaches (this is what the exam asks you to choose between)</h3>
+<div class="tw"><table>
+<tr><th>Approach</th><th>How it works</th><th>Use when</th></tr>
+<tr><td>Issue tree (issue-driven)</td><td>Start with the core question and split it into sub-issues (each phrased as a question). Branches must be <b>MECE</b>: mutually exclusive (no overlap) and collectively exhaustive (no gaps).</td><td><b>The default</b>, "whenever you can." You don't know the answer and want to explore comprehensively. Also lets you divide work among teammates.</td></tr>
+<tr><td>Hypothesis pyramid (hypothesis-driven)</td><td>Start with a candidate answer (leading hypothesis), build sub-hypotheses to confirm or disconfirm it.</td><td>You have strong reasons or expertise to start with a solution; a simple yes/no question (e.g. "should we expand to China?"); time pressure. Risk: falling into solution confirmation.</td></tr>
+<tr><td>Design thinking</td><td>Observe and talk to real users before building any tree or hypothesis. (Standard steps: empathize, define, ideate, prototype, test.)</td><td>You don't understand the problem well enough yet, especially human behavior (e.g. "why do people stop using fitness wearables?").</td></tr>
+</table></div>
+<div class="box take"><span class="lbl">Her take: the practice question (10/28)</span>
+  <p>Library visits are declining: which approach? <b>Any of the three earns full credit if you justify it.</b> Hypothesis-driven: "we already have a good idea what the problem is, we test one hypothesis." Issue-driven: "we don't know, so break it into branches." Design thinking: "we have no clue why this behavior happens, so observe people first." Then give a specific first step. This is on the study guide.</p></div>
+<div class="box trap"><span class="lbl">Exam trap</span><p>The study guide says "issue-driven"; in lectures she calls it the <b>issue tree</b>. Same thing. MECE example from class: Starbucks France, a plain "increase revenue vs reduce cost" tree is <i>less insightful</i> and not truly mutually exclusive (more volume raises some costs).</p></div>
+
+<h3>Solve and Sell (lighter weight)</h3>
+<ul>
+  <li><b>Solve:</b> make an analysis plan (sub-issue → analysis → source → who). Pick the right data (GE's CEO looked bad on stock price, but he started just before 9/11). Make assumptions explicit. Ask "so what?" (AI use correlates with better financials because already-successful firms invest in AI: correlation is not causation). Beware survivor bias ("who are we not looking at?").</li>
+  <li><b>Sell:</b> the <b>pyramid principle</b>: core message first, then support. Two storylines: <b>grouping</b> (core message + parallel reasons; easy to follow, good for receptive audiences) and <b>argument</b> (situation → complication → resolution; better for skeptical audiences and hard-to-sell conclusions).</li>
+</ul>
+
+<!-- ======================= 3 ======================= -->
+<h2 id="c3">3. External analysis</h2>
+<p>Study guide: <b>Five Forces (industry attractiveness; rivalry, buyer power, supplier power, threat of entry, threat of substitutes, complements); industry concentration vs fragmentation; HHI / four-firm concentration ratio; switching costs; barriers to entry; PESTEL.</b></p>
+
+<div class="box def"><span class="lbl">Key definition</span>
+<p><b>Industry attractiveness</b> = the degree to which the <i>average firm</i> in an industry can earn profits. Weak forces = attractive; strong forces = unattractive.</p></div>
+
+<div class="box trap"><span class="lbl">Exam trap #1 (she called this one out)</span>
+<p>Five Forces explains <b>differences between industries</b> (why soft drinks beat airlines). It <b>cannot explain why Coke beats Pepsi</b>: a new entrant or substitute threatens both equally, so Five Forces gives the same answer for each. Within-industry differences come from internal analysis (resources, capabilities, strategy). She said "even a lot of MBA students get confused on" this. You missed the matching question on Quiz 1.</p></div>
+
+<h3>Industry concentration</h3>
+<div class="tw"><table>
+<tr><th></th><th>Concentrated</th><th>Fragmented</th></tr>
+<tr><td>Number of firms</td><td>Few (Google search, mobile carriers)</td><td>Many small players (fast food)</td></tr>
+<tr><td>C4 (four-firm concentration ratio)</td><td>Near 1 / 100% (monopoly = 100%)</td><td>Near 0</td></tr>
+<tr><td>HHI</td><td>Near 10,000 (monopoly)</td><td>Near 0</td></tr>
+<tr><td>Typical rivalry and profit</td><td>Tends to be more profitable</td><td>Tends to be less profitable</td></tr>
+</table></div>
+<ul>
+  <li><b>C4</b> = sales of the four largest firms ÷ total industry sales. <b>HHI</b> = 10,000 × the sum of each firm's squared market share (uses all firms, weights big firms more). The two measures are highly correlated.</li>
+  <li>Slide practice: nine firms (six at $10, two at $5, one at $20). Top four = 20+10+10+10 = 50; total = 90; <b>C4 = 55.6%</b>, "in the middle." HHI example: shares 30/30/20/20 → 10,000 × (.09+.09+.04+.04) = 2,600.</li>
+  <li>Concentration alone is only a <b>weak predictor</b> of profit in real data, because of the other forces.</li>
+</ul>
+<div class="box take"><span class="lbl">Her take (9/16, 10/28)</span><p>"On the exam I will not ask you to do calculations, but you do need to have intuition." Intuition: with one firm, 1 ÷ 1 = 100%. When each firm is tiny, the top four add up to almost nothing, so C4 is near 0. Fewer firms, higher C4. For HHI: "you don't need to memorize the formula, but you do need to know it's a way to capture industry concentration."</p></div>
+
+<h3>How to define the industry you are in</h3>
+<p>No single best way. Use several: (1) classification codes (NAICS, SIC), (2) how organizations describe themselves, (3) the <b>"what job are customers hiring you to do?"</b> test (jobs to be done). The job test reveals substitutes. For a pickleball club in Provo, the job is exercise, recreation and meeting people, so look beyond pickleball for rivals. BMW example from your Quiz 1: identifying the job identifies the most strategically relevant competitors.</p>
+
+<h3>The Five Forces (+ complements)</h3>
+<p>You are the firm in the middle; you want to weaken every force. For each, ask who you have to share profits with.</p>
+<div class="tw"><table>
+<tr><th>Force</th><th>Strong (bad for you) when…</th><th>Examples from class</th></tr>
+<tr><td>Rivalry</td><td>Many direct competitors · slow or no growth · high exit barriers (non-redeployable assets) · high fixed-to-variable cost ratio · little differentiation · low switching costs · excess capacity</td><td>Bowling alleys, steel (exit barriers); airlines, theme parks (fixed costs, fill empty seats); streaming (saturated, low switching costs)</td></tr>
+<tr><td>Buyer power</td><td>Few buyers · alternatives available · easy to switch · buyers could backward integrate · buyers are price sensitive. "The party that can walk away has the power."</td><td>Walmart/Costco over suppliers; student renters (low-medium)</td></tr>
+<tr><td>Supplier power</td><td>Few suppliers · differentiated inputs · high costs of switching suppliers · you are a small share of their sales · suppliers could forward integrate. Mirror image of buyer power.</td><td>Harry Potter actors (power grew each film); Boeing and Airbus over airlines</td></tr>
+<tr><td>Threat of entry</td><td>Weak when <b>barriers to entry</b> are high: economies of scale/scope · capital requirements · customer switching costs · access to scarce resources (shelf space) · regulations/patents · learning curve · network effects · expected retaliation by incumbents</td><td>Social media: entry is easy, scale is hard (network effects). Virgin Cola failed against Coke and Pepsi</td></tr>
+<tr><td>Threat of substitutes</td><td>A product serves the <b>same function with different characteristics</b> (email vs letters vs fax). A <i>rival</i> has largely the same characteristics (Gmail vs Yahoo).</td><td>Plant-based vs traditional meat (medium); Coke and Pepsi buy new brands to neutralize substitutes</td></tr>
+<tr><td>Complements ("sixth force")</td><td>Products that increase the value of your product when used together</td><td>EV charging stations; a laptop bundled with an external hard drive</td></tr>
+</table></div>
+
+<div class="box trap"><span class="lbl">Exam traps</span><ul>
+<li><b>High barriers to entry = LOW threat of entry.</b> Same force, two opposite phrasings. The practice question about the "least profitable" industry hinges on this: the right answer has two strong forces (high buyer power, high substitutes).</li>
+<li><b>Number of competitors is only one factor in rivalry.</b> FinTech with 1,000 firms is not necessarily more rivalrous than AI with 700, because growth rate and differentiation matter. "Please do remember this."</li>
+<li><b>Fragmented industries: more competitors and more intense rivalry.</b> Rapid growth does <i>not</i> increase rivalry; slow growth does.</li>
+<li><b>Switching costs:</b> the lower they are, the easier to poach customers. High switching costs weaken buyers, raise entry barriers, and soften rivalry (loyalty cards, Delta/United tiers). They matter for every force.</li>
+<li>Hershey buying sugar: Hershey is the <b>buyer</b>, so that's buyer power, not supplier power. Decide whose perspective you are taking.</li>
+</ul></div>
+
+<div class="box take"><span class="lbl">Her take: ways to weaken a force (useful for short answers)</span><ul>
+<li><b>Rivalry (Netflix CEO):</b> differentiate (exclusive content), consolidate/merge, impose switching costs.</li>
+<li><b>Buyer power (student renters):</b> shorten contracts and shrink deposits (lower switching costs), fewer students/more housing, or backward integrate.</li>
+<li><b>Supplier power (studio vs actors):</b> recast with a story that justifies it (Batman), or sign young, cheap actors to long-term contracts.</li>
+<li><b>Entry (challenger to TikTok):</b> seed the network with influencers, subsidize early users, don't look like a direct threat at first.</li>
+<li><b>Substitutes (Tyson):</b> praise your own product, make the substitute yourself, buy it, attack it, or fight over labeling so consumers stop seeing it as a substitute.</li>
+</ul></div>
+
+<h3>Coke / Pepsi in the Five Forces (9/23 and the Coke case)</h3>
+<p>Her verdict: all five forces are weak for Coke, so the industry is very profitable. Taste is not the explanation (a generic cola wins blind taste tests every time).</p>
+<ul>
+  <li><b>Suppliers:</b> little power; inputs like sugar are basic commodities and Coke can switch.</li>
+  <li><b>Buyers (bottlers):</b> little power; bottlers build plants next to Coke with heavy investment and depend on the brand.</li>
+  <li><b>Entrants:</b> weak threat; shelf space is scarce, fountain contracts and bottler relationships are locked up, brand loyalty (Virgin Cola failed).</li>
+  <li><b>Rivalry:</b> weak; Coke and Pepsi coexist, rarely price-war, and have divided up restaurants.</li>
+  <li><b>Substitutes:</b> many exist, but Coke buys new brands to neutralize them.</li>
+  <li><b>Case numbers:</b> top three firms hold over 80% of U.S. volume. Concentrate makers earn 20–30% margins vs 8–15% for bottlers (concentrate is low capital intensity, rests on intangible assets, and the maker has leverage over bottlers).</li>
+</ul>
+
+<h3>Broader forces: PESTEL</h3>
+<p>Political · Economic · Socio-cultural · Technological · Environmental · Legal. These constrain the firm and can change the five forces. Coke example: health-conscious consumers (socio-cultural), water use and plastic (environmental), tariffs (political/economic), GDPR-style data laws (legal), AI (technological). Patent protection laws are political/legal; population demographics are socio-cultural; currency exchange rates are economic; manufacturing technology is technological.</p>
+<div class="box take"><span class="lbl">Her take (9/16)</span><p>External forces <b>constrain but don't remove agency</b>. Best Buy embraced Amazon as a permanent constraint and asked how to coexist. And do not judge an industry on average profitability alone: with a unique value you can neutralize forces (the "next Trader Joe's" in grocery).</p></div>
+
+
+
+<!-- ======================= 4 ======================= -->
+<h2 id="c4">4. Internal analysis</h2>
+<p>Study guide: <b>value chain; resource-based view (VRIO); resources vs capabilities; tangible vs intangible; inimitability; path dependence; causal ambiguity; time compression diseconomies; social complexity; network effects; strategic fit.</b></p>
+
+<h3>Value chain</h3>
+<p>The set of steps a firm takes to turn inputs into outputs (design → production → distribution → marketing/sales). It shows <b>what a firm is good at</b>. It cannot tell you why Zara beats H&amp;M; for that you need resources and capabilities. Zara: vertically integrated, garments in store in about three weeks (industry average about six months), almost no advertising, few markdowns.</p>
+
+<h3>Resource-based view (RBV)</h3>
+<ul>
+  <li><b>Resources</b> = things an organization <i>possesses</i>. <b>Tangible:</b> physical assets, financial resources, technology. <b>Intangible:</b> brand/reputation, knowledge, human capital, culture, relationships.</li>
+  <li><b>Capabilities</b> = things an organization can <i>do</i>: McDonald's delivers fast consistent service at scale; Toyota builds high-quality vehicles; Apple designs intuitive products. Resources are the ingredients, capabilities the recipe.</li>
+  <li>Core assumption: <b>resource heterogeneity</b>. Firms hold different bundles of resources and capabilities, and that explains performance differences <i>within</i> an industry.</li>
+  <li>RBV/VRIO identifies what a firm is <b>better at than competitors</b> (the value chain only shows what it is good at).</li>
+  <li>Her guiding principle: ask "how easily can someone copy us?" <b>Combinations of resources are much harder to copy</b> than any single one.</li>
+</ul>
+
+<h3>VRIO</h3>
+<div class="tw"><table>
+<tr><th>Letter</th><th>Question</th><th>If you pass…</th></tr>
+<tr><td>V alu­able</td><td>Does it create value customers pay for?</td><td>Not valuable = disadvantage. V only = parity.</td></tr>
+<tr><td>R are</td><td>Do other competitors enjoy the same advantage?</td><td><b>V + R = a (temporary) competitive advantage</b></td></tr>
+<tr><td>I nimitable</td><td>Is it costly for others to imitate?</td><td><b>V + R + I = advantage that can last</b></td></tr>
+<tr><td>O rganized</td><td>Is the firm structured (systems, processes, incentives) to capture the value?</td><td><b>All four = sustained competitive advantage</b></td></tr>
+</table></div>
+<div class="box take"><span class="lbl">Her take (9/23, 10/28): "you need to know this"</span>
+<p>"To have a competitive advantage you have to have valuable and rare resources, but to have a <b>sustained</b> competitive advantage you have to check <b>all four boxes</b>." I and O make it last. On the practice AI question she said you can argue yes or no for full credit, as long as you show you know what the boxes mean: all four checked = sustainable; only V and R = temporary. (She sometimes says "BRIO"; it's the same test.)</p></div>
+<ul>
+  <li><b>"O" failures:</b> training staff you can't retain; a platform with huge user value and no way to monetize; Seaterz (best equipment but no system to retain profits). Taylor Swift is her favorite "O" example: she captured the value of her music by re-recording her catalog (Taylor's Version).</li>
+</ul>
+
+<h3>Barriers to imitation (what makes a resource "inimitable")</h3>
+<div class="tw"><table>
+<tr><th>Barrier</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>Path dependence</td><td>Unique history. What you are today depends on the path you took; rivals can't relive it.</td><td>Coke's history (WWII bottling story)</td></tr>
+<tr><td>Causal ambiguity</td><td>Nobody (including rivals) can tell exactly <i>why</i> the firm succeeds, so they can't copy it. "You imitate something you don't understand."</td><td>Toyota lets visitors tour its plants; Speed Express in your Quiz 2</td></tr>
+<tr><td>Social complexity</td><td>You may know why, but it rests on culture, relationships and trust that are hard to replicate.</td><td>Chick-fil-A culture</td></tr>
+<tr><td>Time compression diseconomies</td><td>You can't speed it up by spending more. Success can't be built overnight.</td><td>Pharma clinical trials; training an AI model</td></tr>
+<tr><td>Legal protection</td><td>Patents, copyrights</td><td>Drug patents</td></tr>
+<tr><td>Superior access to inputs/customers</td><td>Locked-up scarce inputs or channels</td><td>Coke's shelf space; Ferrari's craftspeople</td></tr>
+<tr><td>Network effects</td><td>Value rises as more people use the product</td><td>Facebook, Uber ("more valuable than an app with three drivers")</td></tr>
+</table></div>
+<div class="box trap"><span class="lbl">Exam traps</span><ul>
+<li><b>Market share is not a barrier to imitation</b> (practice question #2). Neither is "rarity" (that's a VRIO test).</li>
+<li>One barrier can be copied; the "ideal case" is as many barriers as possible (Ferrari uses most of them).</li>
+<li><b>Causal ambiguity</b> = can't tell what causes success. <b>Social complexity</b> = can tell but can't replicate the relationships. <b>Time compression</b> = can't hurry it.</li>
+<li><b>Network effects</b> appear twice: as a barrier to imitation here and as a barrier to entry in Five Forces.</li>
+</ul></div>
+
+<h3>Strategic fit and the company pyramid</h3>
+<p>Alignment is "so, so crucial." The company pyramid asks whether the layers reinforce each other or pull apart: <b>values and priorities → resources and capabilities → activities</b> (what we actually do). Chipotle is well aligned (culture, training, selective franchising); Boeing's cost-pressure shortcuts contradict its engineering values. Alicia (the "Full Plate" case) is misaligned: she values family, creativity and connection with God, but works overtime, uses a job that is all metrics, and does everything alone despite capable people around her. Harley can't copy Honda because the choices must <b>fit together</b>.</p>
+
+<!-- ======================= 5 ======================= -->
+<h2 id="c5">5. Generic strategies</h2>
+<p>Study guide: <b>economic value; competitive positioning (cost leadership and differentiation); sources of cost advantage; (dis)economies of scale; economies of scope; scale, learning and experience curves; sources of differentiation; jobs to be done.</b></p>
+
+<div class="box def"><span class="lbl">Economic value (draw this picture)</span>
+<p><b>Economic value = willingness to pay (WTP) − cost.</b> Price sits between them. Two routes to more value:</p>
+<ul><li><b>Cost advantage:</b> a similar product at lower cost (lowers the cost line).</li>
+<li><b>Differentiation advantage:</b> a unique product earns a price premium (raises WTP).</li>
+<li><b>Innovation</b> can do both at once. Usually the goal of business model innovation.</li></ul></div>
+
+<p>Positioning grid: scope (broad vs narrow) × source of advantage (cost vs differentiation) gives broad low-cost, broad differentiation, focused low-cost and focused differentiation. Trying to do both without choosing = <b>stuck in the middle</b>.</p>
+
+<h3>Sources of cost advantage (the five)</h3>
+<div class="tw"><table>
+<tr><th>Source</th><th>Idea</th><th>Example</th></tr>
+<tr><td>Economies of scale and scope</td><td><b>Scale = be big</b>: spread fixed costs over more units, allow specialization. <b>Scope = be broad</b>: share costs across products or businesses.</td><td>Smartphone volume (scale); Gap and Banana Republic sharing costs (scope)</td></tr>
+<tr><td>Learning and experience</td><td>Cost per unit falls as <b>cumulative</b> output grows.</td><td>Pizza shop</td></tr>
+<tr><td>Proprietary knowledge</td><td>Production know-how others lack</td><td>Toyota practices</td></tr>
+<tr><td>Lower input costs</td><td>Bargaining power, cooperation, low-cost locations</td><td>Nike in Asia (&lt;$0.50/hr) vs Adidas in Europe ($15–20)</td></tr>
+<tr><td>Doing things differently</td><td>A different business model, value chain or activity set</td><td>Costco's warehouse-as-store model</td></tr>
+</table></div>
+
+<h3>Curves and limits</h3>
+<ul>
+  <li><b>Scale curve:</b> cost per unit vs volume <b>in a given year</b>. <b>Experience curve:</b> cost per unit vs <b>cumulative</b> volume. (Your Quiz 3.)</li>
+  <li><b>Learning curve</b> = labor costs only (workers get more efficient). <b>Experience curve</b> = <b>all</b> costs (the organization gets more efficient: lower waste, better supplier prices). Law of experience: cost per unit falls by a constant percentage (typically 10–30%) each time cumulative output doubles.</li>
+  <li><b>Diseconomies of scale:</b> past the minimum efficient scale, growth adds complexity and per-unit cost rises. Netflix expanding abroad needs translation and local content, so costs go back up. Practice question: <i>true</i>.</li>
+</ul>
+<div class="box take"><span class="lbl">Her take (9/30, 10/28)</span><ul>
+<li>"Economies of scale means <b>be big</b>... economies of scope says <b>be broad</b>." Don't mix them.</li>
+<li><b>Low cost ≠ low price.</b> Firms price low for strategic reasons (win share, drive rivals out). You must look at <b>cost structure</b>, so you can't call the cheapest grocer a cost leader just from prices. (She said even many MBAs miss this.)</li>
+<li><b>Strategy is interdependent choices; use systems thinking.</b> Costco: even if members would pay more for broader selection, more SKUs reduce buying power, need more space, raise inventory and handling costs, cause errors, and kill the "treasure hunt." "If we put something in, we have to take something else out." Costco leverages all five cost sources (warehouse model, ~2,000-3,000 SKUs, owns chicken farms, high wages that cut turnover, membership data for forecasting).</li>
+</ul></div>
+
+<h3>Differentiation</h3>
+<ul>
+  <li>Goal: raise willingness to pay. <b>Four primary ways:</b> superior <b>features</b>, <b>reliability/quality</b>, <b>convenience</b>, <b>brand/image</b>. (Economies of scale is NOT one of them.) Examples: Rolex (brand), FedEx (reliability), Trader Joe's, Lululemon, Muji.</li>
+  <li><b>Segment the market</b> first: by product attributes, customer attributes, or <b>job to be done</b>.</li>
+  <li><b>Jobs to be done</b> has three dimensions: <b>functional</b> ("help me do"), <b>emotional</b> ("help me feel"), <b>social</b> ("help me seem"). She said emotional and social jobs are often more important than the functional one; people decide emotionally and justify functionally. The job also defines who your competitors are (BMW example).</li>
+  <li><b>NPS</b> tells you if it is working: % promoters (9–10) minus % detractors (1–6). Unintended consequences of differentiation: rising expectations, more comparison, choice overload, constant upgrading. Luxury brands (Hermès, Rolex, Louis Vuitton) create value beyond function through image and scarcity.</li>
+</ul>
+<div class="tw"><table>
+<tr><th>Strategy</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>Cost leadership</td><td>Wins on price, high volume</td><td>Race to the bottom, price wars leave no one profitable</td></tr>
+<tr><td>Differentiation</td><td>Price premium, loyalty</td><td>Customers are picky and punish imperfection</td></tr>
+<tr><td>Narrow / focus</td><td>You can make something customers love</td><td>All eggs in one basket; the rest of the market is open to rivals</td></tr>
+<tr><td>Broad</td><td>Many customers</td><td>Spread thin, "a lot of OK products"</td></tr>
+</table></div>
+<div class="box take"><span class="lbl">Her take: "What's the best strategy?"</span><p>The one you <b>execute well</b>, that is <b>coherent</b>, and that makes you <b>unique</b>.</p></div>
+
+<p><b>Harley vs Honda (she said "if you see something like this on the test, are you comfortable with the differences?")</b> Harley: differentiation based on identity, culture and community for (older, mostly American) riders; customization, parts, apparel and financing extend the relationship; emotional and social jobs (riders even tattoo the brand). Honda: cost leadership; functional job; global reach and scale (about 20.6 million units vs Harley's about 124,000). Harley <b>cannot</b> copy Honda: it lacks scale and learning curve, and a cheap Harley would dilute the identity that justifies its premium. Borrowing one element of another firm's strategy has to be checked against the rest of your choices.</p>
+
+<!-- ======================= 6 ======================= -->
+<h2 id="c6">6. Innovation strategy</h2>
+<p>Study guide: <b>incremental vs radical; sustaining vs disruptive; first-mover vs second-mover; exploration vs exploitation; creative destruction; industry life cycle; platforms vs pipelines; 3 business model pillars; blue ocean vs red ocean; bottom of the pyramid; frugal innovation.</b></p>
+
+<h3>What counts as innovation</h3>
+<p>Four types: <b>product, process, managerial, business model</b>. Each can be <b>incremental</b> (small change: mobile check-in at a hotel, a new phone model) or <b>radical</b> (large change: Airbnb replacing hotels). "Innovative strategy = reinventing the business model." Why it matters: 83% of executives rank innovation a top-three concern; Nokia looked invincible in 2007. Gary Hamel: "you've got to out-innovate the innovators."</p>
+
+<h3>Three business model pillars (core exam item)</h3>
+<div class="tw"><table>
+<tr><th>Pillar</th><th>Contains</th><th>Changing it changes…</th></tr>
+<tr><td>Value proposition</td><td><b>Who</b> (clients), <b>what</b> (products and services), <b>price</b></td><td>Revenue</td></tr>
+<tr><td>Value architecture</td><td>Value chain, resources, capabilities (how value is delivered)</td><td>Costs and capital employed</td></tr>
+<tr><td>Profit equation</td><td>Revenue, costs, capital employed (asset-heavy vs asset-light)</td><td>ROCE (the financial result)</td></tr>
+</table></div>
+<p>The value proposition can serve several parties (meal vouchers: employers, employees, restaurants). Kilimo Salama redesigned every step of the value architecture: sell crop insurance where farmers buy seed, take payment by phone, and trigger payouts from weather stations, avoiding costly individual claims.</p>
+<div class="box trap"><span class="lbl">Don't memorize the 14 directions</span><p>She said she'll never ask you to list them. Know the idea and a couple of examples: reduce clients' costs (freemium, pay-per-use, fractional ownership, third-party payer), reduce hassles (Venmo, Neighbor), look for non-clients, add functionality or emotion, search other segments or industries (recombine: Topgolf, hostel + co-working), change the revenue stream (subscription, income-share), introduce a third party (a platform). Seven directions are for value proposition, seven for value architecture.</p></div>
+
+<h3>Blue ocean vs red ocean</h3>
+<ul>
+  <li><b>Red ocean:</b> fight rivals in an existing, crowded market with marginally different products ("blood").</li>
+  <li><b>Blue ocean:</b> create new, uncontested market space with a unique value proposition, making competition irrelevant. Typically both lower cost and higher value.</li>
+  <li>Tools: the <b>strategy canvas</b> (plot how much of each attribute you offer; your "value curve") and the <b>ERRC grid</b> (Eliminate, Reduce, Raise, Create). Formule 1 hotels: just great sleep, nothing else. Cirque du Soleil and Nintendo won by addressing <b>non-clients</b>.</li>
+</ul>
+
+<h3>Bottom of the pyramid (BOP) and frugal innovation</h3>
+<ul>
+  <li><b>BOP:</b> serving the largest, poorest group of consumers, who are often non-clients because they can't afford current offers.</li>
+  <li><b>Frugal innovation:</b> radically lower-cost, simple, robust solutions (Embrace baby incubator: a hot-water pouch that keeps premature babies warm).</li>
+  <li><b>The paradox (Quiz 4):</b> pure low-cost products fail because buyers don't want a reminder that they are poor. Fix: invest in design and add <b>aspirational value</b>, so the product feels dignified, not cheap.</li>
+</ul>
+
+<h3>Platforms vs pipelines</h3>
+<div class="tw"><table>
+<tr><th></th><th>Pipeline (traditional)</th><th>Platform</th></tr>
+<tr><td>What it does</td><td>Creates and sells its own product through a linear value chain</td><td>Connects different user groups (two- or multi-sided) so they transact</td></tr>
+<tr><td>Where value comes from</td><td>The firm and its inputs</td><td>The participants. <b>Network effects</b>: value rises with users</td></tr>
+<tr><td>Key challenge</td><td>Efficiency, scale</td><td><b>Chicken-and-egg problem</b>: you must attract all sides at the same time</td></tr>
+<tr><td>Examples</td><td>Traditional hotel, Honda</td><td>Airbnb, Uber, BlaBlaCar, Pinduoduo</td></tr>
+</table></div>
+<ul>
+  <li><b>Solving chicken-and-egg:</b> offer <b>single-user utility</b> so one side benefits without the other (OpenTable gave restaurants free booking software); <b>subsidize one side</b> and make the other the "money side" (users free, advertisers pay); start with a <b>niche community</b>.</li>
+  <li>Making the switch from pipeline to platform is one of the most important moves in innovation. "You do need to know what a platform is": a business that connects different users.</li>
+</ul>
+
+<h3>Creative destruction and the industry life cycle</h3>
+<ul>
+  <li><b>Creative destruction:</b> new ways of doing things replace old ones (ice men → refrigerators, typewriters, Redbox). Business models, products and whole industries get replaced.</li>
+  <li><b>Life cycle stages:</b> introduction → growth → shakeout → maturity → decline. Not every industry follows all five (disruption can end the path early).</li>
+</ul>
+<div class="tw"><table>
+<tr><th>Stage</th><th>Competition and priorities</th></tr>
+<tr><td>Introduction</td><td>Few players, less competition. Experimentation high; marketing matters most to educate customers; focus on growth.</td></tr>
+<tr><td>Growth</td><td>New players enter. Demand is growing, so firms <b>compete for new customers</b> rather than rivals' customers.</td></tr>
+<tr><td>Shakeout / maturity</td><td>No new customers coming in, so firms <b>fight for competitors' customers</b>. Hyper-competition; even differentiators start competing on price; focus on extracting value and keeping margin; number of players falls.</td></tr>
+<tr><td>Decline</td><td>Shrinking demand; consolidation and exit.</td></tr>
+</table></div>
+<p>Her line: "your strategy is going to depend on where you are as a company and as an industry."</p>
+
+<h3>Sustaining vs disruptive innovation</h3>
+<ul>
+  <li><b>Sustaining:</b> improvement along the same trajectory for existing customers.</li>
+  <li><b>Disruptive</b> (Clayton Christensen): starts at the bottom, <b>inferior but affordable</b>; existing customers don't want it and incumbents don't see a threat; over time it improves and overtakes. "One of the most dangerous types of players, players you don't see as rivals." Hard to detect; by the time you notice, it's too late.</li>
+  <li><b>Why incumbents fail to respond</b> (her two categories): (1) they <b>underestimate</b> emerging innovations (the early value of something new is hard to see); (2) disruption is often <b>competence-destroying</b> and <b>cannibalizes</b> the existing business (Kodak invented the digital camera but feared it would kill film; Blockbuster profited from late fees, so it couldn't go all in on streaming).</li>
+  <li><b>How to reduce vulnerability:</b> challenge mental models (diversity of perspectives, outside eyes, not just past data; Fosbury flop), experiment and learn from failure (question assumptions → form hypotheses → experiment → learn and adapt; Netflix runs thousands of experiments daily), and combine exploitation and exploration. Also understand <b>non-customers</b>.</li>
+</ul>
+<div class="box trap"><span class="lbl">Exam trap</span><p>Disruption does <b>not</b> begin by attacking incumbents' best, highest-margin customers. That is sustaining innovation.</p></div>
+
+<h3>First mover (pioneer) vs second mover (follower)</h3>
+<div class="tw"><table>
+<tr><th>First-mover advantages</th><th>First-mover disadvantages (= second-mover advantages)</th></tr>
+<tr><td>Above-average returns until rivals respond · start down the learning/experience curve earlier · customer loyalty · set the industry standard</td><td>Demand uncertainty (cost of educating customers) · free-rider effects / leapfrogging · risk of backing a losing standard</td></tr>
+</table></div>
+<div class="box take"><span class="lbl">Her take (10/14)</span><p>"We can't say one is better than the other." In her data the follower often wins (Boeing 707 over the Comet, IBM over Xerox, Apple/Samsung over Nokia/BlackBerry), sometimes the leader (Polaroid over Kodak, P&amp;G diapers), sometimes it's unclear. Mnemonic: <b>the advantages of being a pioneer are the disadvantages of being a second mover</b>, and vice versa.</p></div>
+
+<h3>Exploration vs exploitation</h3>
+<p><b>Exploitation</b> = scale up what you're good at (efficiency, refine the core). <b>Exploration</b> = put resources toward a "question mark," experimenting with new opportunities. Both extremes fail: Lego explored so much it nearly went bankrupt; firms that only exploit get disrupted. "They can't just choose one. They have to do both." Ways to balance: intrapreneurship (80% core / 20% own projects), a separate "sandbox" unit with different incentives, corporate venture capital. IKEA balanced furniture (exploit) with a home-technology lab (explore).</p>
+
+<div class="box take"><span class="lbl">Her take: AI and advantage (10/14, Quiz 5)</span><p>AI gives operational efficiency, "sustainable competitive advantage, not really." Everyone using the same tool gets the same polished, homogenized output (she asked about countries and kept getting Japan). Output everybody can access is not rare or inimitable. This is the logic behind the coffee-chain AI practice question.</p></div>
+
+<!-- ======================= 7 ======================= -->
+<h2 id="c7">7. Growth strategies</h2>
+<p>Study guide: <b>global vs multidomestic strategy; liability of foreignness; CAGE; business vs corporate strategy; diversification; vertical integration; make vs buy vs ally; backward and forward integration; international entry modes.</b></p>
+
+<h3>Business-level vs corporate-level strategy</h3>
+<div class="tw"><table>
+<tr><th></th><th>Business-level</th><th>Corporate-level</th></tr>
+<tr><td>Question</td><td>How do we create competitive advantage in <b>each</b> business?</td><td>How do we create value for the corporation <b>as a whole</b> (managing multiple business units)?</td></tr>
+<tr><td>Decisions</td><td>Cost leadership vs differentiation; resources and capabilities</td><td><b>Firm scope</b> (which businesses) and <b>firm boundaries</b> (make, buy or ally)</td></tr>
+</table></div>
+<p>All three layers (industry, business unit, corporate) shape profits.</p>
+
+<h3>Firm scope: three ways to widen it</h3>
+<ul>
+  <li><b>Vertical integration:</b> take on other stages of the industry value chain. <b>Backward</b> = toward inputs/suppliers (Walmart's private label); <b>forward</b> = toward distribution/customers (Apple selling directly; Coke into bottling).</li>
+  <li><b>Horizontal (product) diversification:</b> new products or services (Disney: movies → streaming → parks → cruises).</li>
+  <li><b>Geographic diversification:</b> new places (Harley into China: low-cost rivals, noise rules, scrapping rules; its value proposition doesn't travel).</li>
+</ul>
+<div class="box def"><span class="lbl">Better-Off Test (when to diversify)</span>
+<p>Are the businesses worth <b>more together than separately</b>? NPV(B1, B2) &gt; NPV(B1, 0) + NPV(0, B2). If yes, diversify; if not, don't. "When does one plus one equal three?" Synergies are hard to predict, and the costs of integration (especially merging cultures) are almost always underestimated.</p></div>
+<ul>
+  <li><b>Related diversification</b> succeeds more often than unrelated (General Mills, "meeting the needs of the homemaker," drifted into clothing and jewelry and later spun off units). Performance is highest at related-constrained diversification. Today firms like Kellogg, J&amp;J and Kraft Heinz are splitting up to focus.</li>
+  <li><b>Disney and gaming:</b> avoided it in 2016 (culture, diverted resources), recommitted later because gaming became core to entertainment. Lesson: reassess scope over time. Synergy: kids meet characters in games and want merchandise and parks. Cost: brand harm from a poor game, culture clash.</li>
+  <li><b>BCG growth-share matrix:</b> stars (high share, high growth: invest), cash cows (high share, low growth: milk), question marks (low share, high growth: analyze, grow or divest), dogs (low/low: divest). Lesson: don't treat all units the same. Limits: assumes units are independent (a "dog" may support a "star"), share isn't profit, emerging businesses look bad.</li>
+</ul>
+
+<h3>Firm boundaries: make, buy or ally</h3>
+<div class="box def"><span class="lbl">Best-Alternative Test</span>
+<p>Is ownership actually required, or can another arrangement (alliance, JV, contract) deliver equal or greater value?</p>
+<p><b>The rule:</b> use the <b>market</b> when possible → if market transactions are difficult or risky, use <b>alliances and contracting</b> → if those are insufficient, <b>vertically integrate</b>.</p></div>
+<div class="box take"><span class="lbl">Her take (10/21)</span><p>"What is the default option? <b>Markets</b>" (markets are efficient; you can't be good at everything; you stay flexible). The market fails when you can't specify quality in a contract (brand risk; incentive misalignment) or when only a few suppliers hold power over you. Disney and gaming: not the market (can't contract quality), not fully make (not a core competency), so closer partnerships, not hands-off licensing. The rule also applies to platforms (WeChat built, bought and partnered).</p></div>
+<ul><li><b>Make</b> = build internally (own studio). <b>Buy</b> = source from the market (hire a studio, or acquire). <b>Ally</b> = partner, JV.</li></ul>
+
+<h3>Global strategy</h3>
+<ul>
+  <li><b>Why go global:</b> growth, efficiency/scale, managing risk, learning (McDonald's brings overseas menu ideas home). Yet on average companies that stay local outperform those that go global, because of:</li>
+  <li><b>Liability of foreignness:</b> extra costs of operating in an unfamiliar environment, even with a superior product (a French shop expects you to say hello first; Home Depot, Walmart and Target lost money abroad).</li>
+  <li><b>CAGE distances</b> (the smaller, the better): <b>C</b>ultural (language, norms, ethnicity, religion), <b>A</b>dministrative (government policy, institutions), <b>G</b>eographic (remoteness, size, time zones, infrastructure, climate), <b>E</b>conomic (income differences).</li>
+</ul>
+<div class="tw"><table>
+<tr><th>Strategy</th><th>Emphasis</th><th>Use when</th><th>Example</th></tr>
+<tr><td>Global</td><td>Standardization and economies of scale</td><td>Strong scale economies, high R&amp;D, steep experience curve, need for quality control</td><td>Purple Lace (home furnishings, same everywhere)</td></tr>
+<tr><td>Multidomestic</td><td>Local responsiveness and adaptation</td><td>Customer needs, regulations, distribution channels differ by country</td><td>KitKat in Japan (local flavors; became more successful once the local team changed approach)</td></tr>
+<tr><td>Transnational</td><td>Both at once</td><td>High pressure for both</td><td>Shown on the standardization vs local-responsiveness grid</td></tr>
+<tr><td>Arbitrage</td><td>Specialize internationally, buy low and sell high</td><td>Price or cost differences across countries</td><td></td></tr>
+</table></div>
+<p>Starbucks (Quiz 6 videos): failed in Australia but did better in Italy. The videos' details aren't in the transcripts, so use your own Quiz 6 answer for specifics; the concept is liability of foreignness and fit with local culture (CAGE).</p>
+
+<h3>International entry modes: basic trade-offs</h3>
+<p>The slide table was garbled in the file, so this reflects the general pattern the slide shows, ordered from least to most commitment:</p>
+<div class="tw"><table>
+<tr><th>Mode</th><th>Investment / risk</th><th>Control</th><th>Speed</th><th>Local knowledge and insider status</th></tr>
+<tr><td>Exporting</td><td>Lowest</td><td>Low</td><td>Fast</td><td>Outsider; does not overcome trade barriers</td></tr>
+<tr><td>Licensing / franchising</td><td>Low</td><td>Low–medium</td><td>Fast</td><td>Partner supplies local knowledge; overcomes trade barriers</td></tr>
+<tr><td>Alliance / joint venture</td><td>Medium</td><td>Medium (shared)</td><td>Medium</td><td>Gain partner's local resources; possibly seen as insider</td></tr>
+<tr><td>Wholly owned subsidiary (greenfield or acquisition)</td><td>Highest</td><td>High</td><td>Slow (acquisition is faster than greenfield)</td><td>Most committed, possibly insider</td></tr>
+</table></div>
+<p>Firms often move along this path (export first, then license or JV, then wholly own) as they learn about the market. Also remember pioneer vs follower timing: when and how fast to enter.</p>
+
+<!-- ======================= 8 ======================= -->
+<h2 id="c8">8. Strategy beyond markets (non-market)</h2>
+<p>Study guide: <b>differences between market and non-market strategy; Red Queen effect; moral limits of markets.</b></p>
+<p><b>Non-market strategy</b> = managing the social, political and legal environment: lobbying and political activity, defending IP rights, corporate social responsibility (CSR), navigating corruption and ethics, responding to social movements, managing reputation. Driven by rising stakeholder expectations, globalization, digital transparency and competition.</p>
+<div class="tw"><table>
+<tr><th>Market environment</th><th>Non-market environment</th></tr>
+<tr><td>Predictability</td><td>Uncertainty</td></tr>
+<tr><td>Money / economic incentives</td><td>Information / legitimacy</td></tr>
+<tr><td>Leadership</td><td>Coalitions</td></tr>
+<tr><td>Flexibility</td><td>Consistency</td></tr>
+</table></div>
+<p><b>Four takeaways from her slide:</b> non-market environments involve many stakeholders with competing values; <b>legitimacy and trust</b> can matter as much as efficiency or profit; <b>consistency between values and actions</b> matters; coalitions and relationships shape what a company can realistically do.</p>
+
+<h3>Moral limits of markets (Sandel, "What Money Can't Buy")</h3>
+<p>Two arguments against turning everything into a market transaction, as she presented them on 10/28:</p>
+<ol>
+  <li><b>Fairness / inequality:</b> if everything is for sale, people with more money get more.</li>
+  <li><b>Corruption of values (changing motivation):</b> a market norm can crowd out an intrinsic one. Paying kids to read books makes it a job; they pick the shortest books to maximize pay and lose the love of reading. Hiring a "cuddling buddy" turns connection into a transaction.</li>
+</ol>
+<p>"Everybody makes their own choice. We're going to choose where the line is for us."</p>
+
+<h3>Maui Nui (case)</h3>
+<p>Concepts it illustrates (you don't need case facts): harvest volume is capped by deer, landowner access, inspection and cold-chain, so growth is <b>constrained</b>. A <b>cross-subsidy</b> (premium mainland prices fund affordable local prices and community programs). Its <b>social license / legitimacy</b> and promises (<i>kuleana</i>, responsibility) matter as much as efficiency, so allocating each extra pound is a non-market, values-consistency decision. The question "where should each additional pound go?" has no single right answer; a valid argument that names the trade-off wins. Fresh and frozen cuts carry local relationships; shelf-stable snacks travel and bring premium revenue.</p>
+
+<div class="box trap"><span class="lbl">Red Queen effect: the thin spot</span>
+<p>The study guide lists it, but I found it in none of the slides, case files or transcripts. This is the standard meaning, not her wording: from <i>Through the Looking-Glass</i>, "it takes all the running you can do to keep in the same place." Competitors adapt to each other, so your improvement gets matched and no one gains lasting relative advantage. In a non-market setting: when one firm increases lobbying or CSR, rivals match it, producing an escalating arms race with little net advantage. <b>Ask Andrew at tomorrow's review how she defines it.</b></p></div>
+
+
+
+<!-- ======================= TRAPS ======================= -->
+<h2 id="traps">Confusable pairs and traps</h2>
+<p>Multiple choice and true/false hinge on telling these apart. Read down the right column.</p>
+<div class="tw"><table>
+<tr><th>Mix-up</th><th>The difference</th></tr>
+<tr><td>Economies of <b>scale</b> vs <b>scope</b></td><td>Scale = be big, spread fixed costs over more units. Scope = be broad, share costs across different products (Gap / Banana Republic).</td></tr>
+<tr><td><b>Learning</b> vs <b>experience</b> curve</td><td>Learning = labor costs only (workers). Experience = all costs (the organization). Same shape, x-axis is cumulative output.</td></tr>
+<tr><td><b>Scale</b> curve vs <b>experience</b> curve</td><td>Scale: cost per unit vs volume in one year. Experience: cost per unit vs cumulative volume.</td></tr>
+<tr><td><b>Five Forces</b> vs <b>VRIO</b></td><td>Five Forces = external, explains differences <i>between</i> industries. VRIO/RBV = internal, explains differences <i>within</i> an industry (Coke vs Pepsi).</td></tr>
+<tr><td>Barriers to entry <b>high</b> vs threat of entry</td><td>Opposites. High barriers = low threat = good for profit.</td></tr>
+<tr><td><b>Rival</b> vs <b>substitute</b> vs <b>complement</b></td><td>Rival: same characteristics (Gmail vs Yahoo). Substitute: same function, different characteristics (email vs letters). Complement: makes your product more valuable together.</td></tr>
+<tr><td>Buyer power vs supplier power</td><td>Mirror images. The side that can walk away has the power. Ask whose side you are on (Hershey buying sugar = buyer power).</td></tr>
+<tr><td><b>Backward</b> vs <b>forward</b> integration</td><td>Backward = toward suppliers/inputs (Walmart private label). Forward = toward distribution/customers (Apple stores, Coke into bottling).</td></tr>
+<tr><td>Causal ambiguity vs social complexity vs time compression</td><td>Can't tell why it works / can tell but can't replicate relationships and culture / can't hurry it with money.</td></tr>
+<tr><td>Resources vs capabilities</td><td>What you have (ingredients) vs what you can do (recipe).</td></tr>
+<tr><td>V+R vs all four VRIO</td><td>V + R = competitive advantage (temporary). All four = <b>sustained</b>.</td></tr>
+<tr><td>Cost leadership vs low price</td><td>Cost leadership is about cost structure. A firm can price low strategically without being the low-cost producer.</td></tr>
+<tr><td>Business vs corporate strategy</td><td>Cost vs differentiation = business. Scope and boundaries across multiple units = corporate.</td></tr>
+<tr><td>Sustaining vs disruptive</td><td>Sustaining improves for the best existing customers. Disruptive starts cheap and inferior, serves the low end or non-customers, then overtakes.</td></tr>
+<tr><td>Exploitation vs exploration</td><td>Scale up what you're good at vs experiment with new "question marks." You need both.</td></tr>
+<tr><td>Global vs multidomestic</td><td>Standardize for scale vs adapt locally.</td></tr>
+<tr><td>Red vs blue ocean</td><td>Red = crowded existing market. Blue = new, uncontested space.</td></tr>
+<tr><td>Growth stage vs maturity</td><td>Growth: compete for new customers. Maturity: fight for rivals' customers.</td></tr>
+<tr><td>Make / buy / ally order</td><td>Market first, then alliances/contracts, then integrate.</td></tr>
+<tr><td>Pipeline vs platform</td><td>Linear value chain vs connecting user groups with network effects and a chicken-and-egg problem.</td></tr>
+<tr><td>C4 vs HHI</td><td>C4 = top four shares only (0–1). HHI = all firms' squared shares ×10,000 (0–10,000). Both are concentration measures. Fewer firms = higher.</td></tr>
+</table></div>
+
+<!-- ======================= CASES ======================= -->
+<h2 id="cases">Cases and companies: which concept each one illustrates</h2>
+<p>She told the class: "You are not expected to memorize case details, but you should understand the strategic concepts each case illustrates."</p>
+<div class="tw"><table>
+<tr><th>Company</th><th>Concepts</th></tr>
+<tr><td>Harley-Davidson</td><td>Differentiation (identity, community, customization); can't copy Honda's cost leadership; strategic fit; aging customers; geographic diversification into China (value proposition doesn't travel, regulations); premium brand diluted by cheaper bikes</td></tr>
+<tr><td>Honda</td><td>Cost leadership from scale and shared platforms (about 20.6M units vs about 124K); functional jobs</td></tr>
+<tr><td>Costco</td><td>Cost leadership, five cost sources, systems thinking (don't add SKUs), learning/experience (high wages cut turnover), vertical integration, buyer power over suppliers</td></tr>
+<tr><td>Coke / Pepsi</td><td>Five Forces (weak forces, high profits), concentrate vs bottler margins, shelf space as a barrier, buying substitutes, value chain, vertical integration into bottling, between- vs within-industry profit, barriers to imitation</td></tr>
+<tr><td>Maui Nui</td><td>Non-market strategy: legitimacy, values-consistency, stakeholder trade-offs, cross-subsidy; constrained supply and allocation decisions</td></tr>
+<tr><td>Disney</td><td>Scalable resource (characters) and capability; horizontal diversification; Better-Off Test; make/buy/ally for gaming; reassessing scope</td></tr>
+<tr><td>Zara</td><td>Value chain; vertical integration; speed; cost and differentiation together; causal ambiguity / time compression for rivals</td></tr>
+<tr><td>Taylor Swift</td><td>Full VRIO, especially "O": capturing the value of her music</td></tr>
+<tr><td>Alicia ("Full Plate")</td><td>Misalignment of values, resources, activities (company pyramid); strategy for life</td></tr>
+<tr><td>Netflix</td><td>Scale curve and diseconomies abroad; streaming rivalry; experimentation</td></tr>
+<tr><td>Amazon</td><td>Strategy ladder (mission to organization); reinvest vs profit trade-off; Whole Foods as buying unique resources</td></tr>
+<tr><td>Starbucks France</td><td>MECE issue trees; Starbucks Australia vs Italy: liability of foreignness</td></tr>
+<tr><td>KitKat</td><td>Local adaptation in Japan (multidomestic)</td></tr>
+<tr><td>Apple / record labels; JCPenney; Grameen–Danone; fat vs sugar</td><td>Problem-solving pitfalls</td></tr>
+<tr><td>Kodak, Blockbuster, Nokia</td><td>Why incumbents miss disruption (competence-destroying, cannibalization, underestimating)</td></tr>
+<tr><td>Lego, IKEA</td><td>Over-exploring; balancing exploration and exploitation</td></tr>
+<tr><td>Airbnb, Uber, OpenTable, BlaBlaCar, Pinduoduo</td><td>Platforms, network effects, chicken-and-egg, single-user utility</td></tr>
+<tr><td>Formule 1, Cirque du Soleil, Nintendo</td><td>Blue ocean: strategy canvas, ERRC, non-clients</td></tr>
+<tr><td>Embrace, Kilimo Salama</td><td>Frugal innovation / BOP; value-architecture innovation</td></tr>
+<tr><td>Kellogg, J&amp;J, General Mills</td><td>Divestiture and unrelated diversification</td></tr>
+<tr><td>Best Buy vs Amazon</td><td>External forces constrain but don't remove agency</td></tr>
+</table></div>
+
+<!-- ======================= APPLICATION ======================= -->
+<h2 id="apply">The application question</h2>
+<p>One scenario, then <b>five mini questions</b>, each worth a 2–4 sentence answer. Each mini question usually names a framework area from the study guide. A reliable answer pattern for any short answer: <b>name the concept → tie it to a fact in the scenario → state the conclusion</b>. Say "because" at least once.</p>
+<div class="box take"><span class="lbl">Her take</span><p>You can argue A, B or C and get full credit "as long as your arguments are valid." You aren't being graded on defining terms; you are graded on showing you know what the concept means by using it.</p></div>
+
+<h3>Practice scenario 1: Summit Pickle</h3>
+<p>Summit Pickle runs a paid indoor pickleball club in Provo: 12 courts, a coffee bar and a ladder-league system that matches members by skill. Membership is $60 a month. Three other indoor clubs are opening within five miles. The owners are considering (a) adding a pro shop and apparel line and (b) opening a second club in Boise, Idaho.</p>
+<ol>
+  <li>What industry is Summit Pickle really in? Give one direct rival and one substitute.</li>
+  <li>Assess any two of the five forces and say whether the industry looks attractive.</li>
+  <li>Use VRIO to evaluate the ladder-league system as a source of advantage.</li>
+  <li>Is Summit Pickle better off pursuing cost leadership or differentiation? Name one source.</li>
+  <li>Choose (a) or (b) and apply the matching test or framework.</li>
+</ol>
+<details><summary>Show model answers</summary><div class="in">
+<ol>
+<li><b>Industry.</b> Use the jobs-to-be-done test: customers hire it for exercise, recreation and meeting people, so it competes in social fitness and recreation, not just "pickleball." A direct rival is another indoor pickleball club; a substitute is a gym class, a rec league for tennis or basketball, or the free outdoor courts, because they do the same job with different characteristics.</li>
+<li><b>Forces.</b> Rivalry is high: three clubs are opening nearby, service is similar and member switching costs are low. Threat of entry is high too: courts are cheap to build in a warehouse and members can leave anytime (low barriers). With strong forces, the average club will earn modest profits, so the industry looks unattractive unless Summit differentiates.</li>
+<li><b>VRIO.</b> The league is valuable (members stay for matches) and somewhat rare, but a rival can copy a ladder system quickly, so it fails inimitability. It is not organized to lock in value unless Summit builds community and data around it. Verdict: at most a temporary advantage. (You could argue yes if the member community is hard to copy: social complexity and network effects across skill levels.)</li>
+<li><b>Generic strategy.</b> Differentiation. Rivals have the same courts, so Summit can't win on cost without scale. Source: the community, the skill-matched leagues and the coffee bar (convenience and brand), which lift willingness to pay. Fit matters: a discount would conflict with a community-premium identity.</li>
+<li><b>(a) Apparel.</b> Apply the Better-Off Test: is a pro shop worth more with the club than separately? Synergy: members already identify with the brand, so apparel and equipment sells at low acquisition cost (related diversification). Costs: inventory, new capabilities and managers' attention. Do it only if combined value clearly exceeds separate value. <i>(b) Boise.</i> Geographic diversification: check CAGE distance (small, so good) and liability of foreignness (no local community yet). Use the make/buy/ally rule: franchise or partner with a local operator before owning.</li>
+</ol></div></details>
+
+<h3>Practice scenario 2: TutorMatch</h3>
+<p>TutorMatch is an app where BYU students can book paid tutoring from other students. At launch, few tutors signed up because there were few students, and few students signed up because there were few tutors. A traditional tutoring center nearby has dismissed the app as "a toy." TutorMatch is considering adding a $5 monthly subscription for students.</p>
+<ol>
+  <li>Is TutorMatch a pipeline or a platform? Explain why that matters.</li>
+  <li>Name the problem it faces at launch and propose one solution.</li>
+  <li>Give one reason a rival would struggle to copy TutorMatch once it has many users.</li>
+  <li>Which business-model pillar does the subscription change?</li>
+  <li>Why might the tutoring center be making a mistake by dismissing the app?</li>
+</ol>
+<details><summary>Show model answers</summary><div class="in">
+<ol>
+<li><b>Platform.</b> It connects two user groups (students and tutors) rather than producing the service itself. That means its value comes from the participants and it depends on network effects, unlike the center, which employs its own tutors in a linear chain.</li>
+<li><b>Chicken-and-egg problem:</b> each side joins only if the other side is already there. Solution: give one side single-user utility or subsidize it (e.g. recruit tutors from a department with guaranteed first bookings, or give students free first sessions), and start with one niche community (a single course or major) before expanding.</li>
+<li><b>Network effects</b> raise the barrier to imitation and entry: more tutors attract more students and vice versa, so a copycat with few users offers less value. Switching costs (stored reviews, booking history) add to it.</li>
+<li>The <b>profit equation / value proposition</b>: a subscription changes the revenue stream (and price in the value proposition), which in turn affects the profit equation.</li>
+<li>This looks like a <b>disruptive innovation</b>: cheaper, more flexible and initially inferior to the center, serving students who find centers too costly or inconvenient. Incumbents often underestimate such entrants, and the app could improve and overtake. Responding may also cannibalize the center's existing model.</li>
+</ol></div></details>
+
+<!-- ======================= PRACTICE ======================= -->
+<h2 id="practice">Practice questions</h2>
+<p>Her 10 practice questions, the questions from your own Canvas quizzes (Canvas hides the answer key, so I worked out the answers and flagged the ones you got wrong), and extra questions written from the study guide. Short answers: write your own answer first, then reveal.</p>
+<div class="ctrl" id="f-src" aria-label="Source"></div>
+<div class="ctrl" id="f-type" aria-label="Type"></div>
+<div class="ctrl" id="f-topic" aria-label="Topic"></div>
+<div class="ctrl">
+  <button type="button" class="chip" id="f-missed" aria-pressed="false">Only ones I missed</button>
+  <span id="qcount" class="small"></span>
+  <span class="score" id="score" aria-live="polite"></span>
+  <button type="button" class="btn alt" id="reset">Reset</button>
+</div>
+<div id="qlist"></div>
+
+<!-- ======================= FLASHCARDS ======================= -->
+<h2 id="cards">Flashcards</h2>
+<p class="small">Tap the card to flip. Arrow keys move through the deck.</p>
+<button type="button" class="card" id="card" aria-live="polite"></button>
+<div class="ctrl">
+  <button type="button" class="btn alt" id="cprev">Back</button>
+  <button type="button" class="btn" id="cflip">Flip</button>
+  <button type="button" class="btn alt" id="cnext">Next</button>
+  <button type="button" class="btn alt" id="cshuf">Shuffle</button>
+  <span class="score" id="cpos"></span>
+</div>
+
+<!-- ======================= REVIEW QUESTIONS ======================= -->
+<h2 id="gaps">Where the sources are thin</h2>
+<div class="box trap"><span class="lbl">Questions to ask at Monday's review</span><ul>
+<li><b>Red Queen effect.</b> On the study guide but not in any slide or transcript I found.</li>
+<li><b>International entry modes.</b> The slide table is hard to read; confirm the investment / risk / control pattern.</li>
+<li><b>Design thinking.</b> The lecture only says "observe customers first." Ask what depth she expects.</li>
+<li><b>PESTEL vs PEST.</b> Slides and Quiz 1 say PEST/PESTEL; the 9/16 lecture said two letters were added (environmental, technological).</li>
+<li><b>Strategic fit.</b> Listed under internal analysis. I used her alignment / company-pyramid teaching and Harley's fit between choices.</li>
+</ul></div>
+<h3>What this guide is built from, and its limits</h3>
+<ul>
+  <li><b>Sources:</b> Canvas Midterm Study Guide and "midterm review" PDFs; all lecture decks (What is Strategy, Problem Solving, External, Internal, Generic Strategies, Innovation 1 and 2, Growth, Strategy Beyond Markets); the Coke, Harley and Maui Nui cases; your Canvas quiz attempts; and all eight class transcripts (9/2 through 10/28) in the STRAT-392 repo.</li>
+  <li><b>Transcripts are auto-generated</b> and sometimes garbled. The 9/30 transcript is missing about six minutes (0:14 to 0:20), which probably held the economic value and scale/scope definitions; I filled those from the slides. Her own words from the transcripts are in the green "Her take" boxes.</li>
+  <li><b>Quiz answers:</b> Canvas doesn't reveal correct answers. For your Canvas questions I worked out the answers from the course material; the three or four you got wrong are flagged. Quizzes 7–9 weren't available.</li>
+  <li><b>Textbook additions</b> not said in class (design thinking steps, Red Queen, some entry-mode detail) are labelled where they appear.</li>
+  <li>On 9/8 she said students in "Section 6" follow a slightly different curriculum and "might not be tested on this" (the context is unclear). Canvas lists you in STRAT 392-001, but confirm at the review that nothing here is excluded.</li>
+</ul>
+<footer>Generated Nov 1, 2026 from class materials. Closed-book, so this only helps if you study from it.</footer>
+
+</div>
+
+<script>
+// Practice bank. type: mc | tf | sa. src: prof | canvas | extra. missed: you got it wrong on the Canvas quiz.
+const QUIZ = [
+// ---------- Instructor's practice questions (midterm review PDF, reviewed in class 10/28) ----------
+{id:'p1',src:'prof',topic:'External',type:'mc',q:'An industry with fewer firms tends to have a ____ C4 ratio.',opts:['Lower','Higher'],a:1,
+ why:'Her intuition: picture a monopoly. One firm / one firm = 1 (100%). Highly fragmented means each firm is tiny, so the top four add up to almost nothing: close to 0. Fewer firms, higher C4. You will not have to calculate C4 or HHI, but you must know both measure market concentration.'},
+{id:'p2',src:'prof',topic:'Internal',type:'mc',q:'Which of the following is NOT a factor that limits the imitation of another firm\'s resources or capabilities?',opts:['Causal ambiguity','Time compression diseconomies','Network effects','Market share'],a:3,
+ why:'Causal ambiguity (competitors cannot tell why you win), time compression diseconomies (success cannot be built overnight, e.g. pharma clinical trials) and network effects (value rises with users, e.g. Facebook) all make imitation costly. Market share has nothing to do with imitation.'},
+{id:'p3',src:'prof',topic:'Generic',type:'mc',q:'TechPro Inc., a smartphone maker, ramps up production of its latest model. As volume increases, it reduces its per-unit cost by spreading fixed costs over more units. This best illustrates ____.',opts:['Economies of scope','Economies of scale','Diseconomies of scale','Learning curve effects'],a:1,
+ why:'Scale = be big, spread fixed costs. Scope = be broad, share costs across products (Banana Republic and Gap). Learning curve = workers get more efficient with practice. Do not mix up scale and scope.'},
+{id:'p4',src:'prof',topic:'Innovation',type:'tf',q:'In the growth stage of the industry life cycle, firms tend to compete more for new customers than for customers of existing competitors.',a:true,
+ why:'Growing demand and few rivals, so there is plenty for everybody and firms chase new customers. At maturity the number of players is up and no new customers are arriving, so firms fight for each other\'s customers. A student answered "false" in class and was corrected.'},
+{id:'p5',src:'prof',topic:'External',type:'mc',q:'Which describes the industry likely to be the LEAST profitable?',opts:['High barriers to entry, low buyer power','High buyer power, high threat of substitutes','Low threat of substitutes, low supplier power','Low rivalry, high switching costs for buyers'],a:1,
+ why:'Least profitable = least attractive = strong forces. Choice B is the only one with two strong forces. Watch the wording trap: "high barriers to entry" means LOW threat of entry (good for profit). The two phrasings are opposites.'},
+{id:'p6',src:'prof',topic:'Innovation',type:'mc',q:'A new app connects freelance photographers with couples planning weddings. Early on, few photographers join because there are few couples, and few couples join because there are few photographers. This is an example of:',opts:['Liability of foreignness','A chicken-and-egg problem','Economies of scope','Creative destruction'],a:1,
+ why:'The central problem of platforms: you must attract all sides at the same time, and each side only wants to come if the other is already there.'},
+{id:'p7',src:'prof',topic:'Growth',type:'tf',q:'Deciding whether to compete on low cost or differentiation is primarily a corporate-level strategy decision.',a:false,
+ why:'Cost leadership vs differentiation is a business-unit decision. Corporate strategy is about managing several business units together: firm scope (which businesses) and firm boundaries (make, buy or ally).'},
+{id:'p8',src:'prof',topic:'Generic',type:'tf',q:'Economies of scale have a limit, and once a company reaches a certain size, further expansion can lead to inefficiencies and increased per-unit costs.',a:true,
+ why:'Beyond the minimum efficient scale you get diseconomies of scale. Student memory aid from class: Amazon could not open in Antarctica and get better economies of scale.'},
+{id:'p9',src:'prof',topic:'Problem solving',type:'sa',q:'Your local library has seen visits decline for several years. Which problem-solving approach discussed in class (issue-driven, hypothesis-driven, or design thinking) would you recommend first, and why? What specific first step would you take using this approach?',
+ model:'Design thinking. We do not know why people stopped coming, so before breaking the problem down we need to observe and interview former and current visitors and non-visitors to learn what they actually do and want. First step: spend a week interviewing and observing 15 to 20 people (including those who stopped coming) about how they get books, study spaces and events now.',
+ alt:'She accepted ANY of the three if justified (4 points). Hypothesis-driven: "we already have a good idea of the problem (e.g. people moved to e-books), so I test that one hypothesis, first step: check e-book checkout data." Issue-driven: "we don\'t know the cause, so I break it into MECE branches (who stopped coming, why, what substitutes) and start with the issue tree."'},
+{id:'p10',src:'prof',topic:'Internal',type:'sa',q:'A coffee chain plans to add an AI ordering assistant, licensed from a major tech company, to its app. Using the VRIO framework, evaluate whether this feature would give the chain a sustainable competitive advantage.',
+ model:'No. It is probably valuable (faster, easier ordering), but it is not rare, because the tech company licenses the same assistant to every competitor, so it is not inimitable either. Without rarity and inimitability, it gives at most competitive parity or a temporary advantage, not a sustainable one.',
+ alt:'She said you could also argue YES as long as you show you know what VRIO means, e.g. "yes, if the chain\'s own data and loyalty program make its version unique and hard to copy, and it is organized to exploit it." All four boxes checked = sustainable advantage. Only V and R = temporary advantage.'},
+
+// ---------- Your Canvas quizzes (question text from your attempts; Canvas hides the key, answers below are worked out and flagged) ----------
+{id:'c1',src:'canvas',topic:'External',missed:true,type:'mc',q:'The Porter\'s 5 Forces framework is an ____ framework primarily used to understand variation in average-firm profitability ____ industries.',opts:['external analysis, between','internal analysis, within','external analysis, within','internal analysis, between'],a:0,
+ why:'You missed this one on Quiz 1. Five forces is external and explains why industries differ. It does NOT explain why Coke beats Pepsi (that is internal: resources, capabilities, VRIO).'},
+{id:'c2',src:'canvas',topic:'External',missed:true,type:'mc',q:'Satchels has strong brand loyalty. When a new competitor enters, Satchels increases advertising, introduces new products, and lowers prices, making it hard for the entrant to earn a profit. This illustrates ____.',opts:['Forward integration','Barriers to entry','Backward integration','Barriers to exit'],a:1,
+ why:'You missed this one on Quiz 1. Expected retaliation by incumbents, plus brand loyalty, are barriers to entry.'},
+{id:'c3',src:'canvas',topic:'External',missed:true,type:'mc',q:'According to the BMW example, why is it important to identify the job customers are hiring a product to do?',opts:['It reduces supplier power','It eliminates substitutes','It helps identify the most strategically relevant competitors','It guarantees customer loyalty'],a:2,
+ why:'You missed this one on Quiz 1. The "job" test defines the industry: anything that does the same job (even a different product) is a competitor or substitute. Same idea as the "What job are customers hiring you to do?" test for defining your industry.'},
+{id:'c4',src:'canvas',topic:'External',type:'mc',q:'Fragmented industries tend to have ____ competitors and ____ rivalry.',opts:['More, less intense','Fewer, more intense','More, more intense','Fewer, less intense'],a:2,why:'Many direct competitors means high rivalry (the opposite of a concentrated industry).'},
+{id:'c5',src:'canvas',topic:'External',type:'mc',q:'Which condition is most likely to INCREASE buyer power?',opts:['Buyers face high switching costs','Suppliers are highly concentrated','There are many competing buyers','Buyers can easily make the product themselves'],a:3,why:'Credible backward integration (make it themselves) raises buyer power. High switching costs, concentrated suppliers and many competing buyers all weaken buyers.'},
+{id:'c6',src:'canvas',topic:'External',type:'mc',q:'Which condition does NOT tend to increase rivalry among existing competitors?',opts:['The industry is growing rapidly','Some firms have excess capacity','The industry is stagnant or declining','There are many competitors'],a:0,why:'Rapid growth gives everyone room (this is why growth-stage firms chase new customers). Slow growth, excess capacity and many rivals all intensify rivalry.'},
+{id:'c7',src:'canvas',topic:'External',type:'mc',q:'Which is a true statement about switching costs?',opts:['It is the loss in profit a firm incurs for every buyer who switches brands','The higher the switching costs, the easier it is to convince customers to switch','The lower the switching costs, the easier it is for competitors to poach customers','It is a fee a firm pays each buyer who switches for better quality'],a:2,why:'Low switching costs make customers easy to poach: higher rivalry, higher buyer power. High switching costs protect you and help block entrants.'},
+{id:'c8',src:'canvas',topic:'External',type:'mc',q:'Smart Waves sells high-end laptops and bundles an external hard disk with them. This is an example of ____.',opts:['Complementary products','Network effects','Substitutes','Buyer power'],a:0,why:'Complements increase the value of your product when used together (the "sixth force").'},
+{id:'c9',src:'canvas',topic:'External',type:'mc',q:'Industry attractiveness refers to ____.',opts:['The profitability of the average firm in an industry','The growth rate of industry sales','The market share of the industry leader','The profitability of the largest firm'],a:0,why:'Attractiveness = the degree to which an AVERAGE firm in the industry can earn profits. Weak forces mean an attractive industry.'},
+{id:'c10',src:'canvas',topic:'Internal',missed:true,type:'mc',q:'Speed Express consistently outperforms its competitors, but even after studying it closely, competitors cannot determine exactly which combination of its people, processes, products and practices is responsible. Which barrier to imitation best explains this?',opts:['Path dependence','Causal ambiguity','Social complexity','Rarity'],a:1,why:'You missed this one on Quiz 2. Causal ambiguity = outsiders (and often insiders) cannot tell what causes the success, so they cannot copy it. Path dependence = history matters. Social complexity = relationships, trust, culture. Rarity is a VRIO test, not a barrier.'},
+{id:'c11',src:'canvas',topic:'Internal',type:'mc',q:'According to VRIO, a resource must first be both ____ and ____ to create a competitive advantage.',opts:['Valuable and rare','Rare and organized','Valuable and costly to imitate','Organized and costly to imitate'],a:0,why:'Order matters: V, then R gives at least a temporary advantage; adding I makes it sustainable; O means you can capture it.'},
+{id:'c12',src:'canvas',topic:'Internal',type:'mc',q:'Seaterz has the best equipment, employees, infrastructure and technology yet cannot keep pace with SoftSofa. The CEO says it lacks a definite administrative system to audit and retain profits created. Which explains this?',opts:['It was not organized to exploit/capture value','It was not organized to perform','It does not have competitive parity','It has a successful virtuous circle'],a:0,why:'That is the "O" in VRIO: structure, systems and processes that let you capture the value your resources create.'},
+{id:'c13',src:'canvas',topic:'Internal',type:'mc',q:'The resource-based view assumes firms possess different bundles of resources and capabilities. This assumption is known as ____.',opts:['Resource heterogeneity','Competitive parity','Path dependence','Social complexity'],a:0,why:'Resource heterogeneity: firms differ, and those differences explain performance differences inside an industry.'},
+{id:'c14',src:'canvas',topic:'Generic',type:'mc',q:'Nike sourced shoes from Asia at under $0.50/hour wages versus Adidas in Europe at $15-20/hour. This gave Nike a cost advantage through ____.',opts:['Economies of scale','Lower cost inputs','Proprietary knowledge','A different business model'],a:1,why:'One of the five sources of cost advantage: lower input costs (bargaining power, cooperation, low-cost locations).'},
+{id:'c15',src:'canvas',topic:'Generic',type:'mc',q:'What is the key difference between a scale curve and an experience curve?',opts:['Scale plots cumulative volume; experience plots single-year volume','Scale plots volume in a given year vs cost per unit; experience plots cumulative volume vs cost per unit','Scale is for manufacturing; experience is for services','Scale measures learning; experience measures production efficiency'],a:1,why:'Scale curve: cost per unit vs volume IN A YEAR. Experience curve: cost per unit vs CUMULATIVE volume over time. Learning = labor costs only; experience = all costs.'},
+{id:'c16',src:'canvas',topic:'Generic',type:'mc',q:'Which is NOT one of the four main ways to differentiate?',opts:['Superior quality or reliability','Different product features','Economies of scale','Brand image'],a:2,why:'The four: features, reliability/quality, convenience, brand/image. Economies of scale is a cost-advantage source.'},
+{id:'c17',src:'canvas',topic:'Generic',type:'mc',q:'Every "job to be done" has which three dimensions?',opts:['Price, quality, convenience','Cost, differentiation, scope','Features, reliability, brand image','Functional, social and emotional'],a:3,why:'Functional (help me do), Social (help me seem), Emotional (help me feel).'},
+{id:'c18',src:'canvas',topic:'Growth',type:'mc',q:'Karl Jahaz Corp., a U.S. automaker with a superior product, expands into Brazil but struggles to profit and finds operations harder than at home. Which concept explains this?',opts:['Liability of foreignness','Arbitrage disadvantage','Administrative distance','Economic standardization'],a:0,why:'Extra costs and disadvantages of being a foreign firm, even with a superior product.'},
+{id:'c19',src:'canvas',topic:'Growth',type:'mc',q:'Which kind of distance refers to differences in language and how people think about the world?',opts:['Geographic','Cultural','Administrative','Economic'],a:1,why:'CAGE: Cultural (language, norms, religion, ethnicity), Administrative (government policy, institutions), Geographic (remoteness, size, time zones, infrastructure), Economic (income differences).'},
+{id:'c20',src:'canvas',topic:'Growth',type:'mc',q:'A holding company owns a retail chain, a logistics company that supplies it, and a marketing firm. The executives debate whether units should pursue their own goals or coordinate to maximize overall performance. Which strategy are they discussing?',opts:['Business strategy','Competitive strategy','Corporate strategy','Multidomestic strategy'],a:2,why:'Managing multiple business units as a whole is corporate strategy.'},
+{id:'c21',src:'canvas',topic:'Growth',type:'mc',q:'Purple Lace, a home furnishing company, emphasizes standardization over local culture and keeps operations consistent across countries. This exemplifies ____.',opts:['A multidomestic strategy','A global strategy','An arbitrage strategy','A customization strategy'],a:1,why:'Global = standardization and economies of scale. Multidomestic = local responsiveness.'},
+
+// ---------- Extra practice (written from the study guide and slides) ----------
+{id:'e1',src:'extra',topic:'External',type:'tf',q:'Five Forces analysis explains why Coca-Cola has historically been more profitable than Pepsi.',a:false,why:'Five Forces explains profitability differences BETWEEN industries. Differences between firms in the same industry come from internal factors (resources, capabilities, strategy).'},
+{id:'e2',src:'extra',topic:'External',type:'tf',q:'High barriers to entry mean a high threat of entry.',a:false,why:'Opposite. High barriers = low threat of entry. Same force, two ways to word it.'},
+{id:'e3',src:'extra',topic:'External',type:'tf',q:'An industry in which a firm must invest heavily in assets that cannot be redeployed (e.g., steel mills, bowling alleys) tends to have more intense rivalry.',a:true,why:'High exit barriers keep firms fighting rather than leaving. High fixed-to-variable cost ratios (airlines, theme parks) do the same.'},
+{id:'e4',src:'extra',topic:'External',type:'tf',q:'The HHI ranges from 0 (very competitive) to 10,000 (monopoly).',a:true,why:'HHI = 10,000 x sum of squared market shares. Two measures of concentration: C4 (0 to 1) and HHI (0 to 10,000).'},
+{id:'e5',src:'extra',topic:'External',type:'mc',q:'A concentrate maker (like Coke) sells to many small independent bottlers who depend on its brand. In the Coke case, which force explains the concentrate maker\'s high margins (20-30%) compared with bottlers (8-15%)?',opts:['Weak supplier power','Strong power over its buyers, the bottlers','High rivalry','A high threat of substitutes'],a:1,why:'The case says concentrate makers hold significant leverage over bottlers (buyers) who depend on brand access and system-wide marketing. Their business is also less capital intensive and rests on intangible assets.'},
+{id:'e6',src:'extra',topic:'External',type:'mc',q:'Which is a Legal or Political factor in PESTEL?',opts:['Population demographics','New manufacturing technology','Patent protection laws or tariffs','Currency exchange rates'],a:2,why:'PESTEL = Political, Economic, Socio-cultural, Technological, Environmental, Legal. Demographics are socio-cultural, technology is technological, exchange rates are economic.'},
+{id:'e7',src:'extra',topic:'Internal',type:'tf',q:'A resource that is valuable and rare, but easy for rivals to copy, gives a sustainable competitive advantage.',a:false,why:'V + R only = temporary advantage. You need inimitability (I) for it to last, and organization (O) to capture it.'},
+{id:'e8',src:'extra',topic:'Internal',type:'mc',q:'Pharmaceutical firms cannot replicate a rival\'s drug pipeline overnight because clinical trials take years. Which barrier to imitation is this?',opts:['Causal ambiguity','Time compression diseconomies','Social complexity','Network effects'],a:1,why:'You cannot speed up some processes just by spending more money.'},
+{id:'e9',src:'extra',topic:'Internal',type:'mc',q:'Which is a capability (not a resource)?',opts:['A globally recognized brand','Prime store locations','The ability to deliver fast, consistent service at scale','A patent portfolio'],a:2,why:'Resources are things the firm possesses (tangible or intangible); capabilities are things the firm can do (McDonald\'s consistency, Toyota quality, Apple design).'},
+{id:'e10',src:'extra',topic:'Internal',type:'tf',q:'Value chain analysis helps identify what a firm is good at, while RBV/VRIO helps identify what it is better at than its competitors.',a:true,why:'That is how the slides frame the two internal tools.'},
+{id:'e11',src:'extra',topic:'Generic',type:'tf',q:'Economies of scope arise when a firm lowers its per-unit cost by producing a higher volume of one product.',a:false,why:'That is scale. Scope = sharing costs across different products or businesses.'},
+{id:'e12',src:'extra',topic:'Generic',type:'tf',q:'The learning curve captures labor-cost improvements, while the experience curve covers all costs.',a:true,why:'Her wording: learning curve = workers become more efficient (labor only); experience curve = the organization becomes more efficient (goes beyond labor).'},
+{id:'e13',src:'extra',topic:'Generic',type:'mc',q:'Economic value is best defined as:',opts:['Price minus cost','Willingness to pay minus cost','Revenue minus profit','Price minus willingness to pay'],a:1,why:'Economic value = WTP - cost. Differentiation raises WTP (price premium). Cost advantage lowers cost. Innovation can do both.'},
+{id:'e14',src:'extra',topic:'Generic',type:'mc',q:'Suppose Costco learns members would pay more for a far broader product selection. Why might Costco still hesitate to add many more products?',opts:['It would raise Costco\'s buyer power','It would add cost (inventory, space, handling, forecasting errors, weaker supplier leverage) that undermines its cost leadership','It would lower switching costs for suppliers','It would reduce Costco\'s willingness to pay'],a:1,why:'Differentiation and low cost pull in opposite directions; extra variety adds complexity cost. This is the tension in the generic strategies slide.'},
+{id:'e15',src:'extra',topic:'Generic',type:'tf',q:'A company that tries to be both a broad cost leader and a broad differentiator without a clear choice risks being "stuck in the middle."',a:true,why:'Strategy involves trade-offs; choices must fit together (Harley borrowing Honda\'s low-cost moves would dilute its identity).'},
+{id:'e16',src:'extra',topic:'Innovation',type:'tf',q:'A disruptive innovation typically begins by serving the most demanding, highest-margin customers of established firms.',a:false,why:'Disruptive innovations usually start in the low end or with new/overlooked customers, with lower performance but cheaper/simpler offerings, then improve and overtake. Sustaining innovations improve products for existing top customers.'},
+{id:'e17',src:'extra',topic:'Innovation',type:'tf',q:'Being the first mover guarantees long-term success.',a:false,why:'In the class table, followers won most of the time (Boeing 707 over the Comet, IBM over Xerox in PCs, Apple/Samsung over Nokia/BlackBerry). First movers get learning-curve and standard-setting advantages but face demand uncertainty and free riders.'},
+{id:'e18',src:'extra',topic:'Innovation',type:'mc',q:'Ice delivery businesses disappearing after refrigerators became common is an example of:',opts:['Creative destruction','Liability of foreignness','Economies of scope','Exploitation'],a:0,why:'Creative destruction: new innovations replace old business models.'},
+{id:'e19',src:'extra',topic:'Innovation',type:'mc',q:'A company keeps refining its current best-selling product and trimming costs, while a separate team experiments with entirely new markets. Which pair of terms describes this?',opts:['Exploitation and exploration','Sustaining and disruptive','Push and pull','Pipeline and platform'],a:0,why:'Exploitation = leverage existing strengths; exploration = pursue new opportunities. Firms need both.'},
+{id:'e20',src:'extra',topic:'Innovation',type:'mc',q:'Which is a core difference between a platform and a pipeline business?',opts:['A pipeline connects groups of users who transact; a platform creates and sells its own product in a linear chain','A platform connects different user groups and depends on network effects; a pipeline creates and sells a product through a linear chain','A platform never faces competition','A pipeline always has lower costs'],a:1,why:'Platform = connects users (multi-sided), value grows with participants. Pipeline = linear value chain. Platforms face the chicken-and-egg problem.'},
+{id:'e21',src:'extra',topic:'Innovation',type:'tf',q:'The three pillars of a business model are value proposition, value architecture and profit equation.',a:true,why:'Value proposition: who (clients), what (products/services), price. Value architecture: value chain, resources, capabilities. Profit equation: revenue, costs, capital employed.'},
+{id:'e22',src:'extra',topic:'Innovation',type:'tf',q:'A blue ocean strategy competes head-on in an existing, crowded market space.',a:false,why:'That is red ocean. Blue ocean creates uncontested market space and makes competition irrelevant (value innovation).'},
+{id:'e23',src:'extra',topic:'Growth',type:'tf',q:'The Better-Off Test says to diversify if the two businesses are worth more together than separately.',a:true,why:'NPV(B1,B2) > NPV(B1,0) + NPV(0,B2).'},
+{id:'e24',src:'extra',topic:'Growth',type:'mc',q:'According to the make-buy-ally rule, what should a firm try FIRST?',opts:['Vertically integrate','Form a joint venture','Use the market','Acquire a supplier'],a:2,why:'Use the market when possible; if market transactions are difficult or risky, use alliances and contracting; if those fail, vertically integrate.'},
+{id:'e25',src:'extra',topic:'Growth',type:'mc',q:'Coca-Cola buying bottling companies is an example of:',opts:['Horizontal diversification','Geographic diversification','Vertical integration','A multidomestic strategy'],a:2,why:'Vertical integration = participating in more stages of the industry value chain. (Concentrate to bottling moves toward the customer, i.e. forward.)'},
+{id:'e26',src:'extra',topic:'Growth',type:'mc',q:'A company chooses to enter a foreign market with a wholly owned subsidiary rather than exporting. Which trade-off is correct?',opts:['Lower investment and lower control','Higher control and higher investment/risk, but slower entry','Faster entry and lower risk','No ability to overcome trade barriers'],a:1,why:'Moving from exporting to licensing/franchising to JV to wholly owned: investment, risk and control rise; speed falls (acquisition is faster than greenfield).'},
+{id:'e27',src:'extra',topic:'Growth',type:'tf',q:'A multidomestic strategy emphasizes standardization and economies of scale over local responsiveness.',a:false,why:'That is global strategy. Multidomestic = local responsiveness.'},
+{id:'e28',src:'extra',topic:'Growth',type:'tf',q:'In the CAGE framework, the larger the distance between home and target country, the better the likely outcome.',a:false,why:'The smaller the distance, the better.'},
+{id:'e29',src:'extra',topic:'Growth',type:'mc',q:'In the BCG matrix, a business with high market share in a low-growth market that produces stable cash is a:',opts:['Star','Cash cow','Question mark','Dog'],a:1,why:'Stars: high share, high growth (invest). Cash cows: high share, low growth (milk). Question marks: high growth, low share (analyze). Dogs: low/low (divest).'},
+{id:'e30',src:'extra',topic:'Non-market',type:'tf',q:'Corporate political activity, lobbying and CSR are examples of non-market strategy.',a:true,why:'Non-market strategy = managing the social, political and legal environment (lobbying, IP defense, CSR, ethics, reputation).'},
+{id:'e31',src:'extra',topic:'Non-market',type:'mc',q:'Which pair correctly contrasts market and non-market environments?',opts:['Market: coalitions and legitimacy; Non-market: money incentives and predictability','Market: money/economic incentives and predictability; Non-market: legitimacy/information, uncertainty, coalitions','Market: uncertainty; Non-market: flexibility','They are identical in structure'],a:1,why:'Class slide: Market = predictability, money/economic incentives, leadership, flexibility. Non-market = uncertainty, information/legitimacy, coalitions, consistency.'},
+{id:'e32',src:'extra',topic:'Problem solving',type:'mc',q:'In the TOSCA framework, "O" stands for:',opts:['Objectives','Owner (whose problem it is)','Outcomes','Options'],a:1,why:'Trouble, Owner, Success criteria, Constraints, Actors. The owner should be ONE person or a collective acting as one.'},
+{id:'e33',src:'extra',topic:'Problem solving',type:'tf',q:'In an issue tree, the branches at each level should be mutually exclusive and collectively exhaustive (MECE).',a:true,why:'No overlap (ME) and no gaps (CE). Each node is phrased as a question.'},
+{id:'e34',src:'extra',topic:'What is strategy',type:'tf',q:'Variance decomposition research shows that corporate effects explain the largest share of business-unit profitability.',a:false,why:'On the slide: macroeconomic and industry effects 45%, business-unit effects 37%, corporate effects 18%.'},
+
+// ---------- Short answer extras ----------
+{id:'s1',src:'extra',topic:'External',type:'sa',q:'Assess the attractiveness of the airline industry using any THREE of the five forces.',
+ model:'Rivalry is high: many carriers, undifferentiated service, low switching costs and a high fixed-to-variable cost ratio, so they fight on price. Buyer power is high: travelers compare fares online and switch easily. Supplier power is also high (few plane makers, unionized labor). With strong forces the average airline earns low profit, so the industry is unattractive.',
+ alt:'Any three forces work if the assessment (high/low) is backed by a driver from the slides.'},
+{id:'s2',src:'extra',topic:'Generic',type:'sa',q:'Harley-Davidson\'s CEO proposes cutting prices and launching a cheap small bike to compete with Honda. Using generic strategies, explain the risk.',
+ model:'Harley differentiates on identity, community and customization, so customers pay a premium (high WTP). Honda wins on cost through scale (about 20 million bikes vs 124 thousand). Copying Honda would require a cost advantage Harley lacks, and a cheap Harley beside premium bikes would dilute the brand, leaving Harley stuck in the middle. Strategic choices must fit together.'},
+{id:'s3',src:'extra',topic:'Innovation',type:'sa',q:'Name two ways a new two-sided platform can overcome the chicken-and-egg problem.',
+ model:'(1) Offer single-user utility so one side gets value without the other (OpenTable gave restaurants free booking software before diners arrived). (2) Subsidize one side and charge the other (users get it free, advertisers pay). A third option is to start with a niche community and expand.'},
+{id:'s4',src:'extra',topic:'Innovation',type:'sa',q:'Why do successful incumbents often fail to respond to disruptive innovations? Give one reason and one way to reduce the risk.',
+ model:'Incumbents underestimate emerging innovations that look inferior and unprofitable at first, and the new technology can be competence-destroying (Kodak had film and digital divisions). To reduce vulnerability, challenge mental models, run small experiments and learn from failure, or balance exploitation with exploration.'},
+{id:'s5',src:'extra',topic:'Growth',type:'sa',q:'Disney already has movies, streaming, parks, cruises and merchandise. Apply the Better-Off Test to the question of expanding into gaming.',
+ model:'The test asks whether gaming plus Disney is worth more than the two separately: NPV(Disney, Games) > NPV(Disney) + NPV(Games). Disney could argue yes because its characters and IP can be reused, but must weigh integration costs and cultural fit (it avoided gaming before for those reasons). If the combined value is not clearly higher, it should not diversify.'},
+{id:'s6',src:'extra',topic:'Growth',type:'sa',q:'Disney decides to enter gaming. Compare make, buy and ally, and say which you would pick first.',
+ model:'Make = build its own studio (control, slow, costly). Buy = acquire or hire a studio to build (faster, less control). Ally = joint venture with a gaming firm (shared risk, less control). By the best-alternative test, use the market or an alliance first, and vertically integrate only if those fail, so I would start with a partnership.'},
+{id:'s7',src:'extra',topic:'Growth',type:'sa',q:'A US restaurant chain wants to expand abroad. Name one reason it faces a liability of foreignness and one CAGE dimension to check before choosing a country.',
+ model:'It lacks local knowledge, relationships and legitimacy, and may face unfamiliar rules and tastes, so it operates at a disadvantage against local firms. Before choosing a country it should check cultural distance (language, norms, food preferences): the smaller the distance, the better.'},
+{id:'s8',src:'extra',topic:'Non-market',type:'sa',q:'Explain two differences between a company\'s market strategy and its non-market strategy.',
+ model:'Market strategy works through economic incentives and money in a fairly predictable environment, where leadership and flexibility matter. Non-market strategy works in an uncertain social/political environment where legitimacy, information and coalitions matter and consistency between stated values and actions is crucial.'},
+{id:'s9',src:'extra',topic:'Non-market',type:'sa',q:'Michael Sandel argues there are moral limits to markets. Give the two arguments discussed in class, with an example of one.',
+ model:'(1) Fairness/inequality: if everything is for sale, those with more money get more, which is unfair. (2) Corruption of values: markets can crowd out intrinsic motivation. Example: paying kids per book makes them read the shortest books to maximize pay, turning reading into a job and eroding the love of reading.'},
+{id:'s10',src:'extra',topic:'What is strategy',type:'sa',q:'List the four strategic choices and give an example question for one of them.',
+ model:'(1) Where to compete (markets, who to serve); (2) what unique value to offer (why we win with customers); (3) which resources and capabilities to develop; (4) how to sustain the unique value (barriers to imitation). Example: for choice 4, "What stops Zara\'s rivals from copying its fast-fashion supply chain?"'},
+{id:'s11',src:'extra',topic:'Generic',type:'sa',q:'Using jobs-to-be-done, explain why a customer might "hire" a luxury watch even though a phone tells time.',
+ model:'The watch does emotional and social jobs, not just the functional one: it helps the owner feel accomplished and seem successful and refined to others. Because brand and image add willingness to pay beyond function, it supports a differentiation strategy with a price premium.'},
+{id:'s12',src:'extra',topic:'Internal',type:'sa',q:'Zara\'s fast-fashion model is hard for competitors to copy. Give two barriers to imitation that could explain this.',
+ model:'Causal ambiguity: competitors cannot tell which part of the tightly integrated design-to-store system drives results. Path dependence / time compression diseconomies: Zara built its in-house, vertically integrated chain over years, and a rival cannot replicate that speed overnight just by spending more.'}
+];
+
+const CARDS = [
+{t:'Strategy',f:'Strategy (class definition)',b:'A theory and a set of choices that helps a company generate and sustain a competitive advantage.'},
+{t:'Strategy',f:'The four strategic choices',b:'1) Where to compete. 2) What unique value to offer. 3) Which resources and capabilities to develop. 4) How to sustain the unique value (barriers to imitation).'},
+{t:'Strategy',f:'Three principles of strategy (9/2)',b:'Context-dependent with trade-offs; choices must fit together (alignment); gain AND sustain, thinking about competitors.'},
+{t:'Strategy',f:'Variance in business-unit profit: industry / business unit / corporate',b:'45% macro and industry, 37% business unit, 18% corporate. Mapped to: Five Forces and non-market; resources and generic strategy; scope and boundaries.'},
+{t:'Problem solving',f:'4S method',b:'State, Structure, Solve, Sell.'},
+{t:'Problem solving',f:'TOSCA',b:'Trouble (gap between reality and aspiration), Owner (one), Success criteria, Constraints, Actors. Combine into a core question.'},
+{t:'Problem solving',f:'MECE',b:'Mutually exclusive (no overlap) and collectively exhaustive (no gaps). Used to build issue trees; each node is a question.'},
+{t:'Problem solving',f:'Issue tree vs hypothesis pyramid vs design thinking: when?',b:'Issue tree = default, explore a problem you do not know the answer to. Hypothesis = strong reason or expertise, yes/no question, time pressure. Design thinking = problem not understood yet; observe users first.'},
+{t:'Problem solving',f:'Four problem-solving pitfalls',b:'Poor problem definition (Apple vs labels), narrow framing (JCPenney), solution confirmation (Grameen-Danone), miscommunication (fat vs sugar).'},
+{t:'Problem solving',f:'Pyramid principle: grouping vs argument',b:'Core message first. Grouping = parallel reasons (receptive audience). Argument = situation, complication, resolution (skeptical audience, hard-to-sell).'},
+{t:'External',f:'Industry attractiveness',b:'The degree to which the average firm in the industry can earn profits. Weak forces = attractive.'},
+{t:'External',f:'What can Five Forces explain? What can it not?',b:'It explains profit differences BETWEEN industries. It cannot explain differences within an industry (Coke vs Pepsi); that needs internal analysis.'},
+{t:'External',f:'C4 and HHI',b:'C4 = top-4 firms\' sales / total sales (0 to 1). HHI = 10,000 x sum of squared shares (0 to 10,000). Both measure concentration. Fewer firms = higher. No calculations on the exam.'},
+{t:'External',f:'Fragmented vs concentrated industry',b:'Fragmented: many small firms, intense rivalry, lower profit (fast food). Concentrated: few firms, more profitable (Google search). Weak correlation in real data.'},
+{t:'External',f:'Five Forces (+1)',b:'Rivalry, buyer power, supplier power, threat of entry, threat of substitutes, plus complements (the sixth force).'},
+{t:'External',f:'Drivers of high rivalry',b:'Many competitors, slow growth, exit barriers, high fixed-to-variable cost ratio, little differentiation, low switching costs, excess capacity.'},
+{t:'External',f:'Drivers of high buyer power',b:'Few buyers, alternatives, easy switching, backward integration threat, price sensitivity. The party that can walk away has the power.'},
+{t:'External',f:'Drivers of high supplier power',b:'Few suppliers, differentiated inputs, high cost to switch suppliers, you are a small customer, forward integration threat.'},
+{t:'External',f:'Barriers to entry (examples)',b:'Economies of scale/scope, capital requirements, switching costs, scarce resources (shelf space), regulation/patents, learning curve, network effects, expected retaliation.'},
+{t:'External',f:'High barriers to entry means...',b:'LOW threat of entry. Two phrasings of one force; they are opposites.'},
+{t:'External',f:'Substitute vs rival vs complement',b:'Substitute: same function, different characteristics (email vs letters). Rival: same characteristics (Gmail vs Yahoo). Complement: raises value of your product (laptop + hard drive, EVs + chargers).'},
+{t:'External',f:'Switching costs',b:'Lower = easier to poach customers. They matter for every force: high switching costs soften rivalry, weaken buyers, raise entry barriers (loyalty cards). "If stuck, write switching costs."'},
+{t:'External',f:'PESTEL',b:'Political, Economic, Socio-cultural, Technological, Environmental, Legal. Broader forces that constrain firms but do not remove agency.'},
+{t:'External',f:'How to define your industry',b:'Classification codes (NAICS/SIC), self-descriptions, and the "what job are customers hiring you to do?" test.'},
+{t:'Internal',f:'Value chain vs RBV',b:'Value chain shows what a firm is GOOD at. RBV/VRIO shows what it is BETTER at than rivals.'},
+{t:'Internal',f:'Resources vs capabilities',b:'Resources: what you possess (tangible: physical, financial, technology; intangible: brand, knowledge, human capital, culture). Capabilities: what you can do. Ingredients vs recipe.'},
+{t:'Internal',f:'Resource heterogeneity',b:'The RBV assumption that firms hold different bundles of resources and capabilities.'},
+{t:'Internal',f:'VRIO',b:'Valuable, Rare, Inimitable, Organized to exploit. V + R = (temporary) advantage. All four = sustained competitive advantage.'},
+{t:'Internal',f:'Path dependence',b:'Unique history that rivals cannot relive.'},
+{t:'Internal',f:'Causal ambiguity',b:'Rivals cannot tell why you succeed, so they cannot copy it (Toyota plant tours).'},
+{t:'Internal',f:'Social complexity',b:'Success rests on culture, trust and relationships that are hard to replicate.'},
+{t:'Internal',f:'Time compression diseconomies',b:'You cannot rush it by spending more (pharma clinical trials).'},
+{t:'Internal',f:'Network effects',b:'A product\'s value rises as more people use it (Facebook, Uber). Barrier to imitation AND barrier to entry.'},
+{t:'Internal',f:'Which is NOT a barrier to imitation?',b:'Market share. (Also rarity, which is a VRIO test.)'},
+{t:'Internal',f:'Company pyramid / strategic fit',b:'Values and priorities, resources and capabilities, activities. Do they reinforce each other or pull apart? Alignment is crucial.'},
+{t:'Generic',f:'Economic value',b:'Willingness to pay minus cost. Cost advantage lowers cost; differentiation raises willingness to pay; innovation can do both.'},
+{t:'Generic',f:'Five sources of cost advantage',b:'Scale/scope; learning and experience; proprietary knowledge; lower input costs; doing things differently (business model).'},
+{t:'Generic',f:'Economies of scale vs scope',b:'Scale: be big, spread fixed costs. Scope: be broad, share costs across products.'},
+{t:'Generic',f:'Diseconomies of scale',b:'Beyond minimum efficient scale, growth adds complexity and per-unit cost rises. Bigger is not always better.'},
+{t:'Generic',f:'Learning curve vs experience curve',b:'Learning: labor costs only. Experience: all costs. Both plot cost per unit against cumulative output (cost falls 10-30% per doubling).'},
+{t:'Generic',f:'Scale curve vs experience curve',b:'Scale: cost per unit vs volume in a year. Experience: cost per unit vs cumulative volume.'},
+{t:'Generic',f:'Low cost vs low price',b:'Not the same. Cost leadership is about cost structure; prices can be low for strategic reasons.'},
+{t:'Generic',f:'Four ways to differentiate',b:'Features, reliability/quality, convenience, brand/image.'},
+{t:'Generic',f:'Jobs to be done: three dimensions',b:'Functional (help me do), emotional (help me feel), social (help me seem).'},
+{t:'Generic',f:'Stuck in the middle',b:'Trying to be both a cost leader and a differentiator without a clear choice. Strategic choices must fit together.'},
+{t:'Generic',f:'Net Promoter Score',b:'% promoters (9-10) minus % detractors (1-6). A test of whether differentiation is working.'},
+{t:'Generic',f:'Harley vs Honda',b:'Harley: differentiation (identity, community, emotional/social jobs). Honda: cost leadership (scale, functional). Harley cannot copy Honda without diluting identity and lacking scale.'},
+{t:'Innovation',f:'Four types of innovation',b:'Product, process, managerial, business model. Each can be incremental or radical.'},
+{t:'Innovation',f:'Three business model pillars',b:'Value proposition (who, what, price), value architecture (value chain, resources, capabilities), profit equation (revenue, costs, capital employed).'},
+{t:'Innovation',f:'Blue ocean vs red ocean',b:'Red: compete in existing, crowded space. Blue: create uncontested space, making competition irrelevant (strategy canvas, ERRC).'},
+{t:'Innovation',f:'ERRC grid',b:'Eliminate, Reduce, Raise, Create.'},
+{t:'Innovation',f:'Platform vs pipeline',b:'Pipeline: linear value chain, the firm makes and sells. Platform: connects user groups; network effects; chicken-and-egg problem.'},
+{t:'Innovation',f:'Chicken-and-egg problem: solutions',b:'Single-user utility (OpenTable), subsidize one side (free users, advertisers pay), start with a niche community.'},
+{t:'Innovation',f:'Bottom of the pyramid / frugal innovation',b:'Serving the poorest consumers with radically low-cost, simple solutions (Embrace incubator). Pure low-cost can backfire; add aspirational design and dignity.'},
+{t:'Innovation',f:'Creative destruction',b:'New ways replace old ways: products, business models, industries (ice men to refrigerators).'},
+{t:'Innovation',f:'Industry life cycle',b:'Introduction, growth, shakeout, maturity, decline. Growth: compete for new customers. Maturity: fight for rivals\' customers, price competition.'},
+{t:'Innovation',f:'Sustaining vs disruptive innovation',b:'Sustaining: improve along the same path for best customers. Disruptive: starts inferior and cheap, serves low end or non-customers, improves and overtakes.'},
+{t:'Innovation',f:'Why incumbents fail to respond to disruption',b:'They underestimate emerging innovations, and disruptions are competence-destroying and cannibalize the existing business (Kodak, Blockbuster).'},
+{t:'Innovation',f:'First-mover advantages / disadvantages',b:'Advantages: learning curve, above-average returns, loyalty, set standards. Disadvantages: demand uncertainty, free riders, losing standard. Second mover is the mirror image.'},
+{t:'Innovation',f:'Exploration vs exploitation',b:'Exploit: scale what you do well. Explore: experiment with new "question marks." Need both (Lego over-explored).'},
+{t:'Innovation',f:'Does AI give sustainable advantage?',b:'Operational efficiency, yes; sustainable advantage, not really. Everyone has the same tool, so outputs are homogenized: not rare or inimitable.'},
+{t:'Growth',f:'Business vs corporate strategy',b:'Business: advantage in each unit (cost vs differentiation). Corporate: value of the whole (scope and boundaries).'},
+{t:'Growth',f:'Three ways to increase firm scope',b:'Vertical integration, horizontal (product) diversification, geographic diversification.'},
+{t:'Growth',f:'Backward vs forward integration',b:'Backward: toward suppliers (Walmart private label). Forward: toward customers/distribution (Apple stores, Coke into bottling).'},
+{t:'Growth',f:'Better-Off Test',b:'Are the businesses worth more together than separately? NPV(B1,B2) > NPV(B1,0)+NPV(0,B2). If yes, diversify.'},
+{t:'Growth',f:'Best-Alternative Test / make-buy-ally rule',b:'Is ownership required? Use the market when possible; if difficult, alliances/contracts; if insufficient, vertically integrate.'},
+{t:'Growth',f:'BCG matrix',b:'Stars (high share/growth, invest), cash cows (high share, low growth, milk), question marks (low share, high growth, analyze), dogs (low/low, divest).'},
+{t:'Growth',f:'Liability of foreignness',b:'Extra costs of operating in an unfamiliar environment, even with a superior product.'},
+{t:'Growth',f:'CAGE',b:'Cultural, Administrative, Geographic, Economic distance. The smaller the distance, the better.'},
+{t:'Growth',f:'Global vs multidomestic strategy',b:'Global: standardization and scale. Multidomestic: local responsiveness. Transnational: both.'},
+{t:'Growth',f:'Entry modes from least to most commitment',b:'Exporting, licensing/franchising, alliance/JV, wholly owned subsidiary (greenfield or acquisition). Investment, risk and control rise; speed falls.'},
+{t:'Non-market',f:'Market vs non-market strategy',b:'Market: predictability, money/economic incentives, leadership, flexibility. Non-market: uncertainty, information/legitimacy, coalitions, consistency.'},
+{t:'Non-market',f:'Non-market strategy activities',b:'Lobbying, defending IP, CSR, ethics/corruption, responding to social movements, managing reputation.'},
+{t:'Non-market',f:'Moral limits of markets: two arguments',b:'Fairness/inequality and corruption of values (market norms crowd out intrinsic motivation: paying kids to read).'},
+{t:'Non-market',f:'Red Queen effect (standard meaning; check with TA)',b:'"It takes all the running you can do to keep in the same place": rivals match your moves, so no one gains lasting relative advantage (e.g. escalating lobbying or CSR).'},
+];
+
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  var store={get:function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+  /* ---------- nav highlight ---------- */
+  var links=$$('nav.top a'), secs=links.map(function(a){return $(a.getAttribute('href'))}).filter(Boolean);
+  function onScroll(){var y=window.scrollY+120,cur=null;secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id});
+    links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)})}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* ---------- practice ---------- */
+  var SRC={prof:"Her practice Q",canvas:"Your Canvas quiz",extra:"Extra practice"};
+  var state={src:'all',topic:'all',type:'all',missed:false}, done={}, tally={right:0,wrong:0};
+  var list=$('#qlist'), score=$('#score');
+  var topics=[];QUIZ.forEach(function(q){if(topics.indexOf(q.topic)<0)topics.push(q.topic)});
+
+  function chips(id,items,key){
+    var box=$(id);box.innerHTML='';
+    items.forEach(function(it){var b=document.createElement('button');b.className='chip';b.type='button';b.textContent=it[1];
+      b.setAttribute('aria-pressed',String(state[key]===it[0]));
+      b.onclick=function(){state[key]=it[0];$$('.chip',box).forEach(function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');render()};
+      box.appendChild(b)})}
+  chips('#f-src',[['all','All'],['prof','Her 10'],['canvas','Your quizzes'],['extra','Extra']],'src');
+  chips('#f-type',[['all','Any type'],['mc','Multiple choice'],['tf','True/false'],['sa','Short answer']],'type');
+  chips('#f-topic',[['all','All topics']].concat(topics.map(function(t){return [t,t]})),'topic');
+  var mb=$('#f-missed');mb.onclick=function(){state.missed=!state.missed;mb.setAttribute('aria-pressed',String(state.missed));render()};
+
+  function upd(){score.textContent=tally.right+' right · '+tally.wrong+' wrong'}
+  function mark(q,ok){if(done[q.id])return;done[q.id]=true;ok?tally.right++:tally.wrong++;upd()}
+
+  function build(q){
+    var el=document.createElement('div');el.className='q';
+    var meta='<div class="meta"><span class="tag">'+SRC[q.src]+'</span><span class="tag">'+esc(q.topic)+'</span><span class="tag">'+({mc:'Multiple choice',tf:'True / false',sa:'Short answer'})[q.type]+'</span>'+(q.missed?'<span class="tag miss">You missed this</span>':'')+'</div>';
+    el.innerHTML=meta+'<p class="qt">'+esc(q.q)+'</p><div class="body"></div>';
+    var body=$('.body',el);
+    if(q.type==='sa'){
+      body.innerHTML='<textarea id="ta-'+q.id+'" aria-label="Your answer" placeholder="Write your 2-4 sentence answer first, then reveal."></textarea><p><button type="button" class="btn alt">Reveal model answer</button></p>';
+      $('button',body).onclick=function(){
+        var h='<div class="ans"><span class="lbl">Model answer</span>'+esc(q.model)+'</div>';
+        if(q.alt)h+='<div class="ans alt"><span class="lbl">Also earns credit</span>'+esc(q.alt)+'</div>';
+        $('p',body).insertAdjacentHTML('afterend',h);this.disabled=true};
+      return el}
+    var opts=q.type==='tf'?['True','False']:q.opts, ai=q.type==='tf'?(q.a?0:1):q.a;
+    opts.forEach(function(o,i){
+      var b=document.createElement('button');b.type='button';b.className='opt';
+      b.innerHTML='<span class="k">'+(q.type==='tf'?(i?'F':'T'):String.fromCharCode(65+i))+'</span><span>'+esc(o)+'</span>';
+      b.onclick=function(){
+        $$('.opt',body).forEach(function(x,j){x.disabled=true;if(j===ai)x.classList.add('right')});
+        if(i!==ai)b.classList.add('wrong');
+        mark(q,i===ai);
+        body.insertAdjacentHTML('beforeend','<div class="why"><b>'+(i===ai?'Correct. ':'Not quite. ')+'</b>'+esc(q.why||'')+'</div>')};
+      body.appendChild(b)});
+    return el}
+
+  function render(){
+    list.innerHTML='';var n=0;
+    QUIZ.forEach(function(q){
+      if(state.src!=='all'&&q.src!==state.src)return;
+      if(state.topic!=='all'&&q.topic!==state.topic)return;
+      if(state.type!=='all'&&q.type!==state.type)return;
+      if(state.missed&&!q.missed)return;
+      list.appendChild(build(q));n++});
+    $('#qcount').textContent=n+' question'+(n===1?'':'s');
+    if(!n)list.innerHTML='<p class="small">No questions match those filters.</p>'}
+  $('#reset').onclick=function(){done={};tally={right:0,wrong:0};upd();render()};
+  render();upd();
+
+  /* ---------- flashcards ---------- */
+  var deck=CARDS.slice(), idx=0, back=false;
+  var card=$('#card');
+  function show(){var c=deck[idx];card.className='card'+(back?' back':'');
+    card.innerHTML='<span class="side">'+(back?'Answer':c.t)+'</span><span class="txt">'+(back?esc(c.b):esc(c.f))+'</span>';
+    $('#cpos').textContent=(idx+1)+' / '+deck.length}
+  function flip(){back=!back;show()}
+  card.onclick=flip;
+  $('#cflip').onclick=flip;
+  $('#cnext').onclick=function(){idx=(idx+1)%deck.length;back=false;show()};
+  $('#cprev').onclick=function(){idx=(idx-1+deck.length)%deck.length;back=false;show()};
+  $('#cshuf').onclick=function(){for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=deck[i];deck[i]=deck[j];deck[j]=t}idx=0;back=false;show()};
+  document.addEventListener('keydown',function(e){
+    var r=$('#cards').getBoundingClientRect();if(r.top>window.innerHeight*0.6||r.bottom<window.innerHeight*0.3)return;
+    var tag=(document.activeElement||{}).tagName;if(tag==='TEXTAREA'||tag==='INPUT')return;
+    if(e.key==='ArrowRight'){$('#cnext').click()}else if(e.key==='ArrowLeft'){$('#cprev').click()}else if(e.key===' '&&document.activeElement===document.body){e.preventDefault();flip()}});
+  show();
+})();
+
+</script>
